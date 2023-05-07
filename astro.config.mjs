@@ -7,6 +7,11 @@ export default defineConfig({
     assets: "public",
   },
   vite: {
+    server: {
+      watch: {
+        useFsEvents: true,
+      },
+    },
     css: {
       preprocessorOptions: {
         scss: {

@@ -1,29 +1,35 @@
 $palette: (
-  light: (
-    "main": rgb(125, 229, 237),
-    "secondary": rgb(129, 198, 232),
-    "tertiary": rgb(93, 167, 219),
-    "accent": rgb(88, 55, 208),
-    "light": #ffffff,
-    "dark": #000000,
-  ),
-  dark: (
-    "main": rgb(15, 4, 76),
-    "secondary": rgb(20, 30, 97),
-    "tertiary": rgb(120, 122, 145),
-    "accent": rgb(238, 238, 238),
-    "light": #000000,
-    "dark": #ffffff,
-  ),
+  // https://colorhunt.co/palette/7de5ed81c6e85da7db5837d0
+  light:
+    (
+      "main": rgb(125, 229, 237),
+      "secondary": rgb(129, 198, 232),
+      "tertiary": rgb(93, 167, 219),
+      "accent": rgb(88, 55, 208),
+      "light": rgb(255, 255, 255),
+      "dark": rgb(25, 25, 25),
+    ),
+  // https://colorhunt.co/palette/0f044c141e61787a91eeeeee
+  dark:
+    (
+      "main": rgb(15, 4, 76),
+      "secondary": rgb(20, 30, 97),
+      "tertiary": rgb(120, 122, 145),
+      "accent": rgb(238, 238, 238),
+      "light": rgb(25, 25, 25),
+      "dark": rgb(229, 234, 250),
+    )
 );
 
 $text: (
   light: (
-    "main": #42446e,
-    "secondary": #666666,
+    "main": rgb(66, 68, 110),
+    "secondary": rgb(149, 149, 149),
+    "secondary-hover": rgb(119, 118, 118),
   ),
   dark: (
-    "main": #42446e,
-    "secondary": #666666,
+    "main": rgb(217, 217, 217),
+    "secondary": rgb(167, 167, 167),
+    "secondary-hover": rgb(180, 135, 211),
   ),
 );

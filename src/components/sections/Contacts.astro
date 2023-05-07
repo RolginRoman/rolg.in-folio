@@ -21,7 +21,7 @@ const { id: nodeId } = Astro.props;
         target="_blank"
       >
         <i class="ph ph-envelope"></i>
-        Mail
+        E-mail
       </a>
     </li>
   </ul>
@@ -33,11 +33,17 @@ const { id: nodeId } = Astro.props;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 3rem 0 0;
   }
   h2 {
-    font-size: 3rem;
-    font-weight: 600;
     margin: 1rem 0 0;
+    @include utils.font(heading, m);
+    color: utils.text-color("main");
+  }
+
+  h3 {
+    @include utils.font(text, m);
+    color: utils.text-color("main");
   }
   ul {
     list-style: none;
@@ -47,5 +53,13 @@ const { id: nodeId } = Astro.props;
     align-items: center;
     gap: 24px;
     font-size: 36px;
+  }
+  li {
+    @include utils.font(text, m);
+    color: utils.text-color(secondary);
+    transition: color 0.2s ease-out;
+    &:hover {
+      color: utils.text-color(secondary-hover);
+    }
   }
 </style>
