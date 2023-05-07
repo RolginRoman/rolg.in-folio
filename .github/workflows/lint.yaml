@@ -1,0 +1,28 @@
+name: Lint pull request
+
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.16.x
+          cache: npm
+      - name: Install
+        run: yarn install --immutable --inline-builds
+      - name: Lint project
+        run: yarn lint

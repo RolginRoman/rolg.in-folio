@@ -8,6 +8,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview --open",
+    "runeslint": "eslint src/**/*.astro",
+    "lint": "yarn runeslint && yarn astro check",
     "astro": "astro"
   },
   "dependencies": {
