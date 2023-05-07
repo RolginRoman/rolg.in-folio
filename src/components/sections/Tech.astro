@@ -3,28 +3,113 @@ const { id: nodeId } = Astro.props;
 
 const tech = [
   {
-    name: 'Angular',
-    logo: ''
-  }
-]
+    name: "Angular",
+    logo: "/tech-logos/angular.svg",
+  },
+  {
+    name: "Typescript",
+    logo: "/tech-logos/typescript.svg",
+  },
+  {
+    name: "Javascript",
+    logo: "/tech-logos/javascript.svg",
+  },
+  {
+    name: "RxJs",
+    logo: "/tech-logos/rxjs.svg",
+  },
+  {
+    name: "HTML5",
+    logo: "/tech-logos/html.svg",
+  },
+  {
+    name: "SASS/SCSS/CSS",
+    logo: "/tech-logos/sass.svg",
+  },
+  {
+    name: "Git Advanced",
+    logo: "/tech-logos/git.svg",
+  },
+  {
+    name: "Node.js",
+    logo: "/tech-logos/nodejs.svg",
+  },
+];
 ---
 
 <section id={nodeId} class="intro">
   <h2>Tech</h2>
   <h3>Technologies I've been working with recently</h3>
+  <ul>
+    {
+      tech.map((item) => (
+        <li>
+          <>
+            <img alt={item.name} src={item.logo} width="120" height="120" />
+            <span class="tech-name">{item.name}</span>
+          </>
+        </li>
+      ))
+    }
+  </ul>
 </section>
 <style lang="scss">
   @use "styles.scss" as utils;
+
+  @keyframes animateTechName {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+      color: utils.color(tertiary);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      color: utils.color(secondary);
+    }
+  }
 
   .intro {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+
   @include utils.centerHeaders();
+
   h2 {
     font-size: 3rem;
     font-weight: 600;
     margin: 1rem 0 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: 1.4rem 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:hover {
+      box-shadow: #{color("tertiary")} 0px 0px 0px 12px;
+    }
+  }
+
+  .tech-name {
+    opacity: 0;
+    display: inline-block;
+    margin-top: 1rem;
+
+    li:hover & {
+      animation: animateTechName 0.2s linear forwards;
+    }
   }
 </style>

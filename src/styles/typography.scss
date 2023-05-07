@@ -1,0 +1,20 @@
+@use "sass:map";
+
+$_fonts: (
+  heading: (
+    xl: (
+      weight: 800,
+      size: 48px,
+      lineHeight: 56px,
+      letterSpacing: 1px,
+    ),
+  ),
+);
+
+@mixin font($scope, $size) {
+  $font: map.get($_fonts, $scope, $size);
+  font-size: map.get($font, size);
+  font-weight: map.get($font, weight);
+  line-height: map.get($font, lineHeight);
+  letter-spacing: map.get($font, letterSpacing);
+}
