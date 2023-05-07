@@ -2,6 +2,8 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://rolginroman.github.io",
+  base: "/rolg.in-folio",
   output: "static",
   build: {
     assets: "public",
