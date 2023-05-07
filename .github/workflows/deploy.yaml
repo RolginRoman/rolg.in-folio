@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - "**/*.{astro,scss,js,css,ts,tsx,html}"
+      - "public/**"
+      - "astro.config.mjs"
   workflow_dispatch:
 
 permissions:

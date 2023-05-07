@@ -1,6 +1,7 @@
 # Rolgin personal website with Astro 🚀
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/rolginroman/rolg.in-folio)
+[![Open in StackBlitz](https://badgen.net/badge/github%20pages/deployed/blue?icon=github)](https://rolginroman.github.io/rolg.in-folio/)
 
 ## Commands
 
