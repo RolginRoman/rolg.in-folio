@@ -6,10 +6,12 @@
     <li><a href="#about">About</a></li>
     <li><a href="#tech">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contacts">Contacts</a></li>
   </ul>
 </nav>
 <style lang="scss">
+  @use "styles.scss" as utils;
+
   nav {
     display: inline-flex;
     flex: 1 1 0;
@@ -21,6 +23,8 @@
     align-items: center;
     list-style: none;
     padding: 0;
+    @include utils.font(caption, m);
+    color: utils.text-color(secondary);
   }
 
   li {

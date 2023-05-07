@@ -74,14 +74,20 @@ const tech = [
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 3rem 0 0;
   }
 
   @include utils.centerHeaders();
 
   h2 {
-    font-size: 3rem;
-    font-weight: 600;
     margin: 1rem 0 0;
+    @include utils.font(heading, m);
+    color: utils.text-color("main");
+  }
+
+  h3 {
+    @include utils.font(text, m);
+    color: utils.text-color("main");
   }
 
   ul {
@@ -99,7 +105,7 @@ const tech = [
     align-items: center;
 
     &:hover {
-      box-shadow: #{color("tertiary")} 0px 0px 0px 12px;
+      // box-shadow: #{utils.color("tertiary")} 0px 0px 0px 12px;
     }
   }
 
@@ -107,6 +113,7 @@ const tech = [
     opacity: 0;
     display: inline-block;
     margin-top: 1rem;
+    cursor: default;
 
     li:hover & {
       animation: animateTechName 0.2s linear forwards;

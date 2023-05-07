@@ -1,20 +1,32 @@
 @use "sass:map";
+@use "sass:list";
 
 $_fonts: (
   heading: (
-    xl: (
-      weight: 800,
-      size: 48px,
-      lineHeight: 56px,
-      letterSpacing: 1px,
-    ),
+    xl: 52px 800 56px 0 24px 700 32px 0,
+    m: 48px 700 30px 0 24px 700 32px 0,
+  ),
+  text: (
+    m: 28px 500 32px 0 22px 500 30px 0,
+  ),
+  caption: (
+    m: 20px 500 26px 0 20px 500 22px 0,
   ),
 );
 
 @mixin font($scope, $size) {
   $font: map.get($_fonts, $scope, $size);
-  font-size: map.get($font, size);
-  font-weight: map.get($font, weight);
-  line-height: map.get($font, lineHeight);
-  letter-spacing: map.get($font, letterSpacing);
+
+  font-size: list.nth($font, 1);
+  font-weight: list.nth($font, 2);
+  line-height: list.nth($font, 3);
+  letter-spacing: list.nth($font, 4);
+
+  // todo media query
+  //   @media (max-width: 768px) {
+  //     font-size: list.nth($font, 5);
+  //     font-weight: list.nth($font, 6);
+  //     line-height: list.nth($font, 7);
+  //     letter-spacing: list.nth($font, 8);
+  //   }
 }

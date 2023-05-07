@@ -13,15 +13,16 @@ const { id: nodeId } = Astro.props;
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
+    padding: 3rem 0 0;
   }
   h2 {
-    font-size: 3rem;
-    font-weight: 600;
     margin: 1rem 0 0;
+    @include utils.font(heading, m);
+    color: utils.text-color("main");
+  }
+
+  h3 {
+    @include utils.font(text, m);
+    color: utils.text-color("main");
   }
 </style>
