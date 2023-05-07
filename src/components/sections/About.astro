@@ -5,8 +5,9 @@ const { id: nodeId } = Astro.props;
 <summary id={nodeId}>
   <section class="intro">
     <h1>
-      Hi 👋, <br />My name is <span class="text-gradient">Roman Rolgin</span><br
-      />
+      Hi 👋, <br />My name is <br /><span class="text-gradient"
+        >Roman Rolgin</span
+      ><br />
     </h1><h2>I build web apps</h2>
   </section>
   <section class="photo">
@@ -32,20 +33,26 @@ const { id: nodeId } = Astro.props;
   summary {
     display: grid;
     grid-template-areas: "intro photo";
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 32px;
     @include utils.contentMaxWidth();
   }
 
   h1 {
-    font-size: 3rem;
-    font-weight: 800;
     margin: 0;
+    @include utils.font(heading, xl);
   }
 
   h2 {
     font-size: 3rem;
     font-weight: 600;
     margin: 1rem 0 0;
+  }
+
+  .photo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   .profile-photo {

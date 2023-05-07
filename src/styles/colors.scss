@@ -1,25 +1,56 @@
 @use "sass:map";
-@use "sass:meta";
 @use "sass:string";
 @use "palette.scss" as palette;
 
-@function _paletteCssVarName($colorName) {
-  @if (map.has-key(palette.$palette, $colorName)) {
-    @return "palette-" + $colorName;
+@function _getCssVarFromMap($color-map, $colorName, $prefix) {
+  @if (map.has-key($color-map, $colorName)) {
+    @return $prefix + $colorName;
   } @else {
-    @error "`#{$colorName}` is not a valid key in palette";
+    @error "`#{$colorName}` is not a valid key in `#{$prefix}`";
+  }
+}
+
+@function _paletteCssVarName($colorName) {
+  @return _getCssVarFromMap(
+    map.get(palette.$palette, light),
+    $colorName,
+    "palette-"
+  );
+}
+
+@function _textColorCssVarName($colorName) {
+  @return _getCssVarFromMap(
+    map.get(palette.$text, light),
+    $colorName,
+    "text-color-"
+  );
+}
+
+@mixin _applyThemePalette($theme) {
+  // TODO merge with additional map for text styles
+  // https://sass-lang.com/documentation/modules/color
+  @each $paletteColorName, $color in map.get(palette.$palette, $theme) {
+    $colorName: _paletteCssVarName($paletteColorName);
+    --#{$colorName}: #{$color};
+  }
+  @each $textColorName, $color in map.get(palette.$text, $theme) {
+    $colorName: _textColorCssVarName($textColorName);
+    --#{$colorName}: #{$color};
   }
 }
 
 @mixin applyPalette() {
-  // TODO merge with additional map for text styles
-  // https://sass-lang.com/documentation/modules/color
-  @each $paletteColorName, $color in palette.$palette {
-    $colorName: _paletteCssVarName($paletteColorName);
-    --#{$colorName}: #{$color};
+  @include _applyThemePalette(light);
+
+  @media (prefers-color-scheme: dark) {
+    @include _applyThemePalette(dark);
   }
 }
 
 @function color($colorName) {
   @return var(string.unquote("--" + _paletteCssVarName($colorName)));
+}
+
+@function text-color($colorName) {
+  @return var(string.unquote("--" + _textColorCssVarName($colorName)));
 }
