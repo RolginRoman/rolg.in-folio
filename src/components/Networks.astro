@@ -1,0 +1,55 @@
+---
+import { links } from "../const";
+const networks = [
+  {
+    type: "linkedin",
+    link: links.linkedin,
+  },
+  {
+    type: "twitter",
+    link: links.twitter,
+  },
+  {
+    type: "github",
+    link: links.github,
+  },
+];
+---
+
+<ul>
+  {
+    networks.map((network) => (
+      <li>
+        <a
+          class={`ph ph-${network.type}-logo`}
+          target="_blank"
+          href={network.link}
+        />
+      </li>
+    ))
+  }
+</ul>
+<style lang="scss">
+  @use "styles.scss" as utils;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+  }
+  li {
+    + li {
+      margin-left: 12px;
+    }
+  }
+  a {
+    color: utils.color("tertiary");
+    text-decoration: none;
+    font-size: 30px;
+    transition: color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:hover {
+      color: utils.color("accent");
+    }
+  }
+</style>

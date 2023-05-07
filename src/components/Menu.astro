@@ -1,0 +1,35 @@
+---
+---
+
+<nav>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#tech">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+<style lang="scss">
+  nav {
+    display: inline-flex;
+    flex: 1 1 0;
+    justify-content: flex-end;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    + li {
+      margin-left: 3rem;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+</style>

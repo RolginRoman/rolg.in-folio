@@ -1,0 +1,25 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "palette.scss" as palette;
+
+@function _paletteCssVarName($colorName) {
+  @if (map.has-key(palette.$palette, $colorName)) {
+    @return "palette-" + $colorName;
+  } @else {
+    @error "`#{$colorName}` is not a valid key in palette";
+  }
+}
+
+@mixin applyPalette() {
+  // TODO merge with additional map for text styles
+  // https://sass-lang.com/documentation/modules/color
+  @each $paletteColorName, $color in palette.$palette {
+    $colorName: _paletteCssVarName($paletteColorName);
+    --#{$colorName}: #{$color};
+  }
+}
+
+@function color($colorName) {
+  @return var(string.unquote("--" + _paletteCssVarName($colorName)));
+}

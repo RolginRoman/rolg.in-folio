@@ -1,0 +1,22 @@
+---
+type LogoTypes = "base" | "no-bg-blue";
+export interface Props {
+  type?: LogoTypes;
+  width?: number | string;
+  height?: number | string;
+}
+
+let { width, height, type } = Astro.props;
+type ??= "no-bg-blue";
+width ??= 96;
+height ??= "auto";
+---
+
+<img
+  src={type === "no-bg-blue"
+    ? "/logo/logo-no-background.svg"
+    : "/logo/logo-black.svg"}
+  width={width}
+  height={height}
+  alt="Rolgin Roman personal logo"
+/>

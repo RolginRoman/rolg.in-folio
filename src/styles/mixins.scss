@@ -1,0 +1,14 @@
+$contentMaxWidth: 912px;
+
+@mixin contentMaxWidth() {
+  width: $contentMaxWidth;
+  margin: 0 auto;
+}
+
+@mixin centerHeaders {
+  h2,
+  h3,
+  h4 {
+    text-align: center;
+  }
+}

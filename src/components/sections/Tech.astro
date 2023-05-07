@@ -1,0 +1,30 @@
+---
+const { id: nodeId } = Astro.props;
+
+const tech = [
+  {
+    name: 'Angular',
+    logo: ''
+  }
+]
+---
+
+<section id={nodeId} class="intro">
+  <h2>Tech</h2>
+  <h3>Technologies I've been working with recently</h3>
+</section>
+<style lang="scss">
+  @use "styles.scss" as utils;
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @include utils.centerHeaders();
+  h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin: 1rem 0 0;
+  }
+</style>

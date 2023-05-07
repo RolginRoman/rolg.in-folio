@@ -1,15 +1,24 @@
 {
   "name": "app",
   "type": "module",
+  "packageManager": "yarn@3.5.1",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro preview --open",
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource/alata": "^4.5.9",
+    "@phosphor-icons/web": "^2.0.3",
     "astro": "^2.4.1"
+  },
+  "devDependencies": {
+    "normalize.css": "^8.0.1",
+    "prettier": "^2.8.8",
+    "prettier-plugin-astro": "^0.8.0",
+    "sass": "^1.62.1"
   }
 }
