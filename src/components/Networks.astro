@@ -2,15 +2,15 @@
 import { links } from "../const";
 const networks = [
   {
-    type: "linkedin",
+    type: "LinkedIn",
     link: links.linkedin,
   },
   {
-    type: "twitter",
+    type: "Twitter",
     link: links.twitter,
   },
   {
-    type: "github",
+    type: "Github",
     link: links.github,
   },
 ];
@@ -21,9 +21,10 @@ const networks = [
     networks.map((network) => (
       <li>
         <a
-          class={`ph ph-${network.type}-logo`}
+          class={`ph ph-${network.type.toLowerCase()}-logo`}
           target="_blank"
           href={network.link}
+          aria-label={`Reach me out with ${network.type}`}
         />
       </li>
     ))
