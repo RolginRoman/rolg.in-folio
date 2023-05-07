@@ -1,0 +1,27 @@
+---
+import Logo from "./Logo.astro";
+import Networks from "./Networks.astro";
+import Menu from "./Menu.astro";
+---
+
+<header>
+  <section>
+    <Logo />
+    <Menu />
+    <Networks />
+  </section>
+</header>
+<style lang="scss">
+  @use "styles.scss" as utils;
+
+  header {
+    display: flex;
+    align-items: center;
+  }
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include utils.contentMaxWidth();
+  }
+</style>

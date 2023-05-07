@@ -1,0 +1,51 @@
+---
+import { links } from "../../const";
+const { id: nodeId } = Astro.props;
+---
+
+<section id={nodeId} class="contacts">
+  <h2>Contacts</h2>
+  <h3>Don't hesitate to reach me out</h3>
+  <ul>
+    <li>
+      <a href={links.telegram} target="_blank">
+        <i class="ph ph-telegram-logo"></i>
+        Telegram
+      </a>
+    </li>
+    <li>
+      <a
+        href={"mailto:" +
+          links.mail +
+          "?subject=Hi%20Roman%2C%20Happy%20to%20reach%20you!"}
+        target="_blank"
+      >
+        <i class="ph ph-envelope"></i>
+        Mail
+      </a>
+    </li>
+  </ul>
+</section>
+<style lang="scss">
+  @use "styles.scss" as utils;
+  @include utils.centerHeaders();
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin: 1rem 0 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    font-size: 36px;
+  }
+</style>

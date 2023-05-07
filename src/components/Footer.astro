@@ -1,0 +1,39 @@
+---
+import Logo from "./Logo.astro";
+import Menu from "./Menu.astro";
+import Networks from "./Networks.astro";
+---
+
+<footer>
+  <section class="content">
+    <Logo width={48} />
+    <Networks />
+  </section>
+  <section class="menu">
+    <Menu />
+  </section>
+</footer>
+<style lang="scss">
+  @use "styles.scss" as utils;
+
+  footer {
+    min-height: 15vh;
+    background-color: utils.color("light");
+  }
+
+  .content,
+  .menu {
+    @include utils.contentMaxWidth();
+  }
+
+  .menu {
+    margin-top: 0.5rem;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid utils.color("accent");
+  }
+</style>

@@ -1,0 +1,55 @@
+---
+const { id: nodeId } = Astro.props;
+---
+
+<summary id={nodeId}>
+  <section class="intro">
+    <h1>
+      Hi 👋, <br />My name is <span class="text-gradient">Roman Rolgin</span><br
+      />
+    </h1><h2>I build web apps</h2>
+  </section>
+  <section class="photo">
+    <img
+      class="profile-photo"
+      alt="Roman Rolgin photo"
+      width="256"
+      src="https://lookyourbestbeyourbest.files.wordpress.com/2011/11/image-3.jpeg"
+    />
+  </section>
+</summary>
+<style lang="scss">
+  @use "styles.scss" as utils;
+
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+
+  summary {
+    display: grid;
+    grid-template-areas: "intro photo";
+    grid-gap: 32px;
+    @include utils.contentMaxWidth();
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin: 1rem 0 0;
+  }
+
+  .profile-photo {
+    border-radius: 50%;
+    box-shadow: utils.color("accent") 0px 0px 0px 12px;
+  }
+</style>

@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:svgjs="http://svgjs.dev/svgjs" width="1000" height="1000" viewBox="0 0 1000 1000">
-    <rect width="1000" height="1000" fill="#ffffff"></rect>
-
+    <rect width="1000" height="1000" fill="transparent"></rect>
     <g transform="matrix(0.7,0,0,0.7,150.53267689538308,265.538395744681)"><svg viewBox="0 0 211 141"
             data-background-color="#0f1553" preserveAspectRatio="xMidYMid meet" height="668" width="1000"
             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

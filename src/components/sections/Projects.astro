@@ -1,0 +1,27 @@
+---
+const { id: nodeId } = Astro.props;
+---
+
+<section id={nodeId} class="projects">
+  <h2>Projects</h2><h3>Things I've worked on in the recent past</h3>
+</section>
+<style lang="scss">
+  @use "styles.scss" as utils;
+  @include utils.centerHeaders();
+
+  .projects {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+  h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin: 1rem 0 0;
+  }
+</style>
