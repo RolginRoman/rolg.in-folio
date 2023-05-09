@@ -19,7 +19,7 @@ const networks = [
 <ul>
   {
     networks.map((network) => (
-      <li>
+      <li title={network.type}>
         <a
           class={`ph ph-${network.type.toLowerCase()}-logo`}
           target="_blank"
@@ -48,7 +48,7 @@ const networks = [
     color: utils.color("tertiary");
     text-decoration: none;
     font-size: 30px;
-    transition: color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     &:hover {
       color: utils.color("accent");

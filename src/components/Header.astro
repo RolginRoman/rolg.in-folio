@@ -2,6 +2,7 @@
 import Logo from "./Logo.astro";
 import Networks from "./Networks.astro";
 import Menu from "./Menu.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
 <header>
@@ -9,6 +10,8 @@ import Menu from "./Menu.astro";
     <Logo />
     <Menu />
     <Networks />
+    <i class="separator"></i>
+    <ThemeToggle />
   </section>
 </header>
 <style lang="scss">
@@ -23,5 +26,15 @@ import Menu from "./Menu.astro";
     align-items: center;
     justify-content: space-between;
     @include utils.contentMaxWidth();
+  }
+
+  .separator {
+    height: 2rem;
+    margin: 0 2rem;
+    border-right: 2px solid utils.color(secondary);
+
+    @include utils.withDark() {
+      border-right: 2px solid utils.text-color(secondary);
+    }
   }
 </style>

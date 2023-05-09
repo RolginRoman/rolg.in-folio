@@ -1,9 +1,42 @@
 ---
+import ProjectCard from "../ProjectCard.astro";
 const { id: nodeId } = Astro.props;
+const projects = [
+  {
+    projectName: "blabla",
+    imageUrl:
+      "https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "There is one of the most stupid project",
+    githubLink: "https://github.com/RolginRoman",
+  },
+  {
+    projectName: "blabla",
+    imageUrl:
+      "https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "There is one of the most stupid project",
+    githubLink: "https://github.com/RolginRoman",
+  },
+  {
+    projectName: "blabla",
+    imageUrl:
+      "https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "There is one of the most stupid project",
+    githubLink: "https://github.com/RolginRoman",
+  },
+];
 ---
 
 <section id={nodeId} class="projects">
   <h2>Projects</h2><h3>Things I've worked on in the recent past</h3>
+  <ul class="projects-list">
+    {
+      projects.map(({ projectName, description, githubLink, imageUrl }) => (
+        <li>
+          <ProjectCard {projectName} {description} {imageUrl} {githubLink} />
+        </li>
+      ))
+    }
+  </ul>
 </section>
 <style lang="scss">
   @use "styles.scss" as utils;
@@ -13,7 +46,7 @@ const { id: nodeId } = Astro.props;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem 0 0;
+    padding: 3rem 0  2rem;
   }
   h2 {
     margin: 1rem 0 0;
@@ -24,5 +57,13 @@ const { id: nodeId } = Astro.props;
   h3 {
     @include utils.font(text, m);
     color: utils.text-color("main");
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
 </style>

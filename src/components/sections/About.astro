@@ -1,5 +1,6 @@
 ---
 const { id: nodeId } = Astro.props;
+const baseImageDimension = 256;
 ---
 
 <summary id={nodeId}>
@@ -11,23 +12,27 @@ const { id: nodeId } = Astro.props;
     </h1><h2>I build web apps</h2>
   </section>
   <section class="photo">
-    <img
-      class="profile-photo"
-      alt="Roman Rolgin photo"
-      width="256"
-      src="https://lookyourbestbeyourbest.files.wordpress.com/2011/11/image-3.jpeg"
-    />
+    <div class="border">
+      <img
+        class="profile-photo"
+        alt="Roman Rolgin photo"
+        width={baseImageDimension - 14}
+        height={baseImageDimension - 14}
+        src="https://lookyourbestbeyourbest.files.wordpress.com/2011/11/image-3.jpeg"
+      />
+    </div>
   </section>
 </summary>
 <style lang="scss">
   @use "styles.scss" as utils;
 
   .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
+    @include utils.applyTextGradient(var(--accent-gradient));
+    // background-image: var(--accent-gradient);
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
+    // background-size: 400%;
+    // background-position: 0%;
   }
 
   summary {
@@ -36,7 +41,7 @@ const { id: nodeId } = Astro.props;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 32px;
     @include utils.contentMaxWidth();
-    padding: 4rem 0 0;
+    padding: 4rem 0 2rem;
   }
 
   h1 {
@@ -57,8 +62,23 @@ const { id: nodeId } = Astro.props;
     justify-content: flex-end;
   }
 
+  .border {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(
+      0deg,
+      #{utils.color(secondary)} 0%,
+      #{utils.color(main)} 30%,
+      #{utils.color(accent)} 60%
+    );
+    width: 256px;
+    height: 256px;
+    border-radius: 50%;
+  }
+
   .profile-photo {
     border-radius: 50%;
-    box-shadow: utils.color("accent") 0px 0px 0px 12px;
+    // box-shadow: utils.color("accent") 0px 0px 0px 12px;
   }
 </style>
