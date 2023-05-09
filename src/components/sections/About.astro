@@ -18,7 +18,7 @@ const baseImageDimension = 256;
         alt="Roman Rolgin photo"
         width={baseImageDimension - 14}
         height={baseImageDimension - 14}
-        src="https://lookyourbestbeyourbest.files.wordpress.com/2011/11/image-3.jpeg"
+        src="avatar-photo-sq.jpg"
       />
     </div>
   </section>
@@ -79,6 +79,8 @@ const baseImageDimension = 256;
 
   .profile-photo {
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center 25%;
     // box-shadow: utils.color("accent") 0px 0px 0px 12px;
   }
 </style>

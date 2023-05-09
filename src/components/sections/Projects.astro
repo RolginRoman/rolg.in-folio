@@ -28,6 +28,18 @@ const projects = [
 
 <section id={nodeId} class="projects">
   <h2>Projects</h2><h3>Things I've worked on in the recent past</h3>
+  <article>
+    <p>
+      Software engineer with more than 8 years of experience in web development.
+      Proficient in frontend frameworks like Angular, Typescript, and system
+      architecture.
+    </p>
+    <p>
+      Moreover, I led teams with guidance to projects' completion. Passionate
+      about user-centric design, UX and business metrics optimisations via
+      development and people management.
+    </p>
+  </article>
   <ul class="projects-list">
     {
       projects.map(({ projectName, description, githubLink, imageUrl }) => (
@@ -46,17 +58,24 @@ const projects = [
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem 0  2rem;
+    padding: 3rem 0 2rem;
   }
   h2 {
     margin: 1rem 0 0;
     @include utils.font(heading, m);
-    color: utils.text-color("main");
+    color: utils.text-color(main);
   }
 
   h3 {
     @include utils.font(text, m);
-    color: utils.text-color("main");
+    color: utils.text-color(main);
+  }
+
+  article {
+    @include utils.font(caption, m);
+    color: utils.text-color(secondary);
+    margin: 1rem 0;
+    text-align: justify;
   }
 
   ul {

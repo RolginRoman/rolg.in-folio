@@ -31,7 +31,8 @@ const { projectName, imageUrl, description, githubLink } = Astro.props as Props;
     border-radius: 12px;
     overflow: hidden;
     background-color: color(light);
-    box-shadow: color(secondary) 0 0 5px 2px, color(dark) 4px 7px 8px 0px;
+    // box-shadow: color(secondary) 0 0 5px 2px, color(dark) 4px 7px 8px 0px;
+    box-shadow: 0 0 3px 0 color(accent), 4px 7px 8px 0 color(secondary);
     transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 
     &:hover {
@@ -61,12 +62,15 @@ const { projectName, imageUrl, description, githubLink } = Astro.props as Props;
   }
 
   .link {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     margin-top: 12px;
     color: text-color(secondary);
-    text-align: end;
+    @include font(caption, s);
 
     & span {
+      margin-left: 4px;
       border-bottom: 1px solid text-color(secondary);
 
       &:hover {
