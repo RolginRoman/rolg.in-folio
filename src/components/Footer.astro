@@ -2,6 +2,7 @@
 import Logo from "./Logo.astro";
 import Menu from "./Menu.astro";
 import Networks from "./Networks.astro";
+import { Icon } from "astro-icon";
 ---
 
 <footer>
@@ -10,7 +11,15 @@ import Networks from "./Networks.astro";
     <Networks />
   </section>
   <section class="menu">
-    <Menu />
+    <Menu align="default" />
+    <a
+      class="tool"
+      href="https://astro.build"
+      aria-label="Link to Astro framework website"
+    >
+      Crafted with
+      <Icon name="logos:astro" aria-label="Astro framework" />
+    </a>
   </section>
 </footer>
 <style lang="scss">
@@ -24,6 +33,9 @@ import Networks from "./Networks.astro";
   .content,
   .menu {
     @include utils.contentMaxWidth();
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .menu {
@@ -35,5 +47,43 @@ import Networks from "./Networks.astro";
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid utils.color("accent");
+  }
+
+  .tool {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    @include utils.font(caption, s);
+    color: utils.text-color(secondary);
+    --theme-text: utils.text-color(main);
+    --theme-accent: utils.color(accent);
+    transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+    &:hover {
+      color: utils.text-color(main);
+
+      & :global(path:nth-child(4)) {
+        fill: utils.text-color(main);
+      }
+    }
+  }
+
+  [astro-icon="logos:astro"] {
+    display: inline-block;
+    height: 2em;
+    margin-left: 12px;
+
+    & :global(path) {
+      transition: fill 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    // TODO ultra strange styling
+    & :global(path:nth-child(1)) {
+      fill: utils.color(dark);
+    }
+
+    & :global(path:nth-child(4)) {
+      fill: utils.text-color(secondary);
+    }
   }
 </style>

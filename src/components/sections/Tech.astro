@@ -1,37 +1,47 @@
 ---
+import { Icon } from "astro-icon";
+
 const { id: nodeId } = Astro.props;
 
 const tech = [
   {
     name: "Angular",
+    iconName: "logos:angular-icon",
     logo: "tech-logos/angular.svg",
   },
   {
     name: "Typescript",
+    iconName: "logos:typescript-icon",
     logo: "tech-logos/typescript.svg",
   },
   {
     name: "Javascript",
+    iconName: "logos:javascript",
     logo: "tech-logos/javascript.svg",
   },
   {
     name: "RxJs",
+    iconName: "logos:reactivex",
     logo: "tech-logos/rxjs.svg",
   },
   {
     name: "HTML5",
+    iconName: "logos:html-5",
     logo: "tech-logos/html.svg",
   },
   {
     name: "SASS/SCSS/CSS",
+    iconName: "logos:sass",
     logo: "tech-logos/sass.svg",
   },
   {
     name: "Git Advanced",
+    iconName: "logos:git-icon",
     logo: "tech-logos/git.svg",
   },
   {
     name: "Node.js",
+    iconName: "logos:nodejs-icon",
     logo: "tech-logos/nodejs.svg",
   },
 ];
@@ -44,10 +54,13 @@ const tech = [
     {
       tech.map((item) => (
         <li>
-          <>
-            <img alt={item.name} src={item.logo} width="120" height="120" />
-            <span class="tech-name">{item.name}</span>
-          </>
+          <Icon
+            name={item.iconName}
+            aria-label={item.name}
+            width="120"
+            height="120"
+          />
+          <span class="tech-name">{item.name}</span>
         </li>
       ))
     }
@@ -107,6 +120,12 @@ const tech = [
     &:hover {
       // box-shadow: #{utils.color("tertiary")} 0px 0px 0px 12px;
     }
+  }
+
+  [astro-icon] {
+    border-radius: 8px;
+    display: block;
+    overflow: hidden;
   }
 
   .tech-name {

@@ -10,16 +10,20 @@
     "preview": "astro preview --open",
     "runeslint": "eslint src/**/*.astro",
     "lint": "yarn runeslint && yarn astro check",
+    "killdev": "lsof -i :3000 | grep node | awk '{print $2}' | xargs kill -9",
+    "dev-watch": "chokidar \"**/*.scss\" -c \"yarn killdev && yarn dev\"",
     "astro": "astro"
   },
   "dependencies": {
     "@fontsource/alata": "^4.5.9",
-    "@phosphor-icons/web": "^2.0.3"
+    "@phosphor-icons/web": "^2.0.3",
+    "astro-icon": "^0.8.0"
   },
   "devDependencies": {
+    "@typescript-eslint/parser": "^5.59.2",
     "astro": "^2.4.2",
     "astro-purgecss": "^2.0.1",
-    "@typescript-eslint/parser": "^5.59.2",
+    "chokidar-cli": "^3.0.0",
     "eslint": "^8.40.0",
     "eslint-plugin-astro": "^0.26.1",
     "normalize.css": "^8.0.1",

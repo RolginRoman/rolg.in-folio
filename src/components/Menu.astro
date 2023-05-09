@@ -1,7 +1,12 @@
 ---
+interface Props {
+  align?: "end" | "default";
+}
+
+const { align = "end" } = Astro.props;
 ---
 
-<nav>
+<nav class:list={[{ "-end": align === "end" }]}>
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#tech">Skills</a></li>
@@ -15,7 +20,10 @@
   nav {
     display: inline-flex;
     flex: 1 1 0;
-    justify-content: flex-end;
+
+    &.-end {
+      justify-content: flex-end;
+    }
   }
 
   ul {
