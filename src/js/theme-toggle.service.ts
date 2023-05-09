@@ -3,7 +3,7 @@ const saveUserTheme = (theme: "light" | "dark") => {
 };
 const getCurrentUserTheme = () => {
   const lsTheme = localStorage?.getItem("theme");
-  if (typeof localStorage !== "undefined" && lsTheme) {
+  if (lsTheme) {
     if (lsTheme === "dark" || lsTheme === "light") {
       return lsTheme;
     } else {
@@ -18,21 +18,29 @@ const getCurrentUserTheme = () => {
 
 const theme = getCurrentUserTheme();
 
+const toggle = document.getElementById(
+  "themeToggle"
+) as HTMLInputElement | null;
+
 if (theme === "light") {
   document.documentElement.classList.remove("dark");
+  if (toggle) {
+    toggle.checked = true;
+  }
 } else {
   document.documentElement.classList.add("dark");
+  if (toggle) {
+    toggle.checked = false;
+  }
 }
 
 saveUserTheme(theme);
 
-const handleToggleClick = () => {
+const handleToggleChange = () => {
   const element = document.documentElement;
   element.classList.toggle("dark");
   const isDark = element.classList.contains("dark");
   saveUserTheme(isDark ? "dark" : "light");
 };
 
-document
-  .getElementById("themeToggle")
-  ?.addEventListener("click", handleToggleClick);
+toggle?.addEventListener("change", handleToggleChange);
