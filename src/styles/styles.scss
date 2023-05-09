@@ -1,4 +1,4 @@
 @forward "mixins.scss";
-@forward "typography.scss" show font;
+@forward "typography.scss" show font, applyFontFace;
 @forward "colors.scss";
 @forward "utils.scss";

@@ -43,9 +43,13 @@ const projects = [
   <ul class="projects-list">
     {
       projects.map(({ projectName, description, githubLink, imageUrl }) => (
-        <li>
-          <ProjectCard {projectName} {description} {imageUrl} {githubLink} />
-        </li>
+        <ProjectCard
+          tag="li"
+          {projectName}
+          {description}
+          {imageUrl}
+          {githubLink}
+        />
       ))
     }
   </ul>

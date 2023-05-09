@@ -3,11 +3,12 @@ import Logo from "./Logo.astro";
 import Menu from "./Menu.astro";
 import Networks from "./Networks.astro";
 import { Icon } from "astro-icon";
+import Emoji from "astro-emoji";
 ---
 
 <footer>
   <section class="content">
-    <Logo width={48} />
+    <Logo width={48} height={32} />
     <Networks />
   </section>
   <section class="menu">
@@ -17,7 +18,7 @@ import { Icon } from "astro-icon";
       href="https://astro.build"
       aria-label="Link to Astro framework website"
     >
-      Crafted with
+      Crafted with&nbsp;<Emoji symbol="❤️" label="love" />&nbsp;and
       <Icon name="logos:astro" aria-label="Astro framework" />
     </a>
   </section>
@@ -57,7 +58,10 @@ import { Icon } from "astro-icon";
     color: utils.text-color(secondary);
     --theme-text: utils.text-color(main);
     --theme-accent: utils.color(accent);
-    transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+    @include utils.skipIfNoMotionPrefered() {
+      transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
 
     &:hover {
       color: utils.text-color(main);
@@ -74,7 +78,9 @@ import { Icon } from "astro-icon";
     margin-left: 12px;
 
     & :global(path) {
-      transition: fill 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+      @include utils.skipIfNoMotionPrefered() {
+        transition: fill 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
     }
 
     // TODO ultra strange styling

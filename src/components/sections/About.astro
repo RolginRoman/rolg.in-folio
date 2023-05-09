@@ -1,4 +1,5 @@
 ---
+import Emoji from "astro-emoji";
 const { id: nodeId } = Astro.props;
 const baseImageDimension = 256;
 ---
@@ -6,8 +7,8 @@ const baseImageDimension = 256;
 <summary id={nodeId}>
   <section class="intro">
     <h1>
-      Hi 👋, <br />My name is <br /><span class="text-gradient"
-        >Roman Rolgin</span
+      Hi <Emoji symbol="👋" label="Hi" />, <br />My name is <br /><span
+        class="text-gradient">Roman Rolgin</span
       ><br />
     </h1><h2>I build web apps</h2>
   </section>

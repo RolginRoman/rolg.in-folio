@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:list";
+@use "@fontsource/inter/scss/mixins.scss" as fontSourceInter;
 
 $_fonts: (
   heading: (
@@ -12,7 +13,7 @@ $_fonts: (
   ),
   caption: (
     m: 20px 400 26px 0 20px 400 22px 0,
-    s: 16px 400 20px 0 16px 400 20px 0,
+    s: 16px 400 22px 0 16px 400 22px 0,
   ),
 );
 
@@ -31,4 +32,41 @@ $_fonts: (
   //     line-height: list.nth($font, 7);
   //     letter-spacing: list.nth($font, 8);
   //   }
+}
+
+// temporarily skipped. Using google fonts
+@mixin applyFontFace() {
+  $allWeights: ();
+  @each $scope, $scopedFonts in $_fonts {
+    @each $size, $valuesList in $scopedFonts {
+      $desktopWeight: list.nth($valuesList, 2);
+      $mobileWeight: list.nth($valuesList, 6);
+      @if not map.has-key($allWeights, $desktopWeight) {
+        $allWeights: map.set(
+          $allWeights,
+          $desktopWeight,
+          "@fontsource/inter/files/inter-latin-#{$desktopWeight}-normal.woff2"
+            "@fontsource/inter/files/inter-latin-#{$desktopWeight}-normal.woff"
+        );
+      }
+      @if not map.has-key($allWeights, $mobileWeight) {
+        $allWeights: map.set(
+          $allWeights,
+          $mobileWeight,
+          "@fontsource/inter/files/inter-latin-#{$mobileWeight}-normal.woff2"
+            "@fontsource/inter/files/inter-latin-#{$mobileWeight}-normal.woff"
+        );
+      }
+    }
+  }
+
+  @each $weight, $links in $allWeights {
+    @include fontSourceInter.fontFaceCustom(
+      $weight: $weight,
+      $display: fallback,
+      $woff2Path: list.nth($links, 1),
+      $woffPath: list.nth($links, 2),
+      $unicodeRange: false
+    );
+  }
 }
