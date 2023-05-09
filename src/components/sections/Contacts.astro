@@ -10,7 +10,7 @@ const { id: nodeId } = Astro.props;
     <li>
       <a href={links.telegram} target="_blank">
         <i class="ph ph-telegram-logo"></i>
-        Telegram
+        Contact me with Telegram
       </a>
     </li>
     <li>
@@ -21,7 +21,7 @@ const { id: nodeId } = Astro.props;
         target="_blank"
       >
         <i class="ph ph-envelope"></i>
-        E-mail
+        Contact me with E-mail
       </a>
     </li>
   </ul>
@@ -33,7 +33,7 @@ const { id: nodeId } = Astro.props;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem 0 0;
+    padding: 3rem 0 2rem;
   }
   h2 {
     margin: 1rem 0 0;
@@ -48,6 +48,7 @@ const { id: nodeId } = Astro.props;
   ul {
     list-style: none;
     padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,9 +58,26 @@ const { id: nodeId } = Astro.props;
   li {
     @include utils.font(text, m);
     color: utils.text-color(secondary);
-    transition: color 0.2s ease-out;
+    transition: color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
     &:hover {
       color: utils.text-color(secondary-hover);
+    }
+
+    a {
+      display: block;
+      @include utils.applyTextGradient(
+        linear-gradient(
+          45deg,
+          #{utils.color("accent")},
+          #{utils.color("secondary")} 30%
+        )
+      );
+      transition: transform 0.2s ease-out;
+
+      &:hover {
+        transform: translateY(2px) scale(1.01);
+      }
     }
   }
 </style>

@@ -60,13 +60,11 @@ const tech = [
     0% {
       opacity: 0;
       transform: translateY(100%);
-      color: utils.color(tertiary);
     }
 
     100% {
       opacity: 1;
       transform: translateY(0);
-      color: utils.color(secondary);
     }
   }
 
@@ -74,7 +72,7 @@ const tech = [
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem 0 0;
+    padding: 3rem 0 2rem;
   }
 
   @include utils.centerHeaders();
@@ -97,6 +95,8 @@ const tech = [
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
+    @include utils.font(caption, m);
+    color: utils.text-color("secondary");
   }
 
   li {

@@ -24,10 +24,17 @@
     list-style: none;
     padding: 0;
     @include utils.font(caption, m);
-    color: utils.text-color(secondary);
   }
 
   li {
+    color: utils.text-color(secondary);
+    transition: color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:hover {
+      // TODO underline with animation
+      color: utils.text-color(secondary-hover);
+    }
+
     + li {
       margin-left: 3rem;
     }

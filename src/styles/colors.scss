@@ -2,17 +2,20 @@
 @use "sass:string";
 @use "palette.scss" as palette;
 
+$_mainPalette: palette.$palette;
+$_textPalette: palette.$text;
+
 @function _getCssVarFromMap($color-map, $colorName, $prefix) {
   @if (map.has-key($color-map, $colorName)) {
     @return $prefix + $colorName;
   } @else {
-    @error "`#{$colorName}` is not a valid key in `#{$prefix}`";
+    @error "`#{$colorName}` isn't a valid key in `#{$prefix}`";
   }
 }
 
 @function _paletteCssVarName($colorName) {
   @return _getCssVarFromMap(
-    map.get(palette.$palette, light),
+    map.get($_mainPalette, light),
     $colorName,
     "palette-"
   );
@@ -20,7 +23,7 @@
 
 @function _textColorCssVarName($colorName) {
   @return _getCssVarFromMap(
-    map.get(palette.$text, light),
+    map.get($_textPalette, light),
     $colorName,
     "text-color-"
   );
@@ -29,11 +32,11 @@
 @mixin _applyThemePalette($theme) {
   // TODO merge with additional map for text styles
   // https://sass-lang.com/documentation/modules/color
-  @each $paletteColorName, $color in map.get(palette.$palette, $theme) {
+  @each $paletteColorName, $color in map.get($_mainPalette, $theme) {
     $colorName: _paletteCssVarName($paletteColorName);
     --#{$colorName}: #{$color};
   }
-  @each $textColorName, $color in map.get(palette.$text, $theme) {
+  @each $textColorName, $color in map.get($_textPalette, $theme) {
     $colorName: _textColorCssVarName($textColorName);
     --#{$colorName}: #{$color};
   }
@@ -42,8 +45,14 @@
 @mixin applyPalette() {
   @include _applyThemePalette(light);
 
-  @media (prefers-color-scheme: dark) {
+  @at-root.dark {
     @include _applyThemePalette(dark);
+  }
+}
+
+@mixin withDark() {
+  :global(.dark) & {
+    @content;
   }
 }
 

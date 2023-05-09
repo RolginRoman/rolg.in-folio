@@ -1,0 +1,81 @@
+---
+interface Props {
+  projectName: string;
+  imageUrl: string;
+  description: string;
+  githubLink: string;
+}
+
+const { projectName, imageUrl, description, githubLink } = Astro.props as Props;
+---
+
+<div class="card">
+  <img
+    src={imageUrl}
+    alt={`Project ${projectName} Preview`}
+    width="230"
+    height="140"
+  />
+  <div class="content">
+    <h3>{projectName}</h3>
+    <span class="description">{description}</span>
+    <a class="link" href={githubLink} aria-label="View Code"
+      ><i class="ph ph-github-logo"></i><span>View Code</span></a
+    >
+  </div>
+</div>
+
+<style lang="scss">
+  @use "styles.scss" as *;
+  .card {
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: color(light);
+    box-shadow: color(secondary) 0 0 5px 2px, color(dark) 4px 7px 8px 0px;
+    transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  img {
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  h3 {
+    margin: 6px 0 12px;
+    color: text-color(main);
+  }
+
+  .content {
+    padding: 8px 16px 16px;
+    cursor: default;
+  }
+
+  .description {
+    color: text-color(secondary);
+  }
+
+  .link {
+    display: block;
+    margin-top: 12px;
+    color: text-color(secondary);
+    text-align: end;
+
+    & span {
+      border-bottom: 1px solid text-color(secondary);
+
+      &:hover {
+        border-color: color(accent);
+      }
+    }
+
+    &:hover {
+      color: color(accent);
+    }
+  }
+</style>

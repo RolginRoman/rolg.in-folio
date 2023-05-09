@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "sass:map";
+
 $palette: (
   // https://colorhunt.co/palette/7de5ed81c6e85da7db5837d0
   light:
@@ -13,7 +16,7 @@ $palette: (
   dark:
     (
       "main": rgb(15, 4, 76),
-      "secondary": rgb(20, 30, 97),
+      "secondary": rgb(26, 108, 209),
       "tertiary": rgb(120, 122, 145),
       "accent": rgb(238, 238, 238),
       "light": rgb(25, 25, 25),
@@ -25,11 +28,11 @@ $text: (
   light: (
     "main": rgb(66, 68, 110),
     "secondary": rgb(149, 149, 149),
-    "secondary-hover": rgb(119, 118, 118),
+    "secondary-hover": color.adjust(rgb(149, 149, 149), $lightness: -30%),
   ),
   dark: (
     "main": rgb(217, 217, 217),
     "secondary": rgb(167, 167, 167),
-    "secondary-hover": rgb(180, 135, 211),
+    "secondary-hover": color.adjust(rgb(167, 167, 167), $lightness: 30%),
   ),
 );
