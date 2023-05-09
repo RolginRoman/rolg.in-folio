@@ -1,17 +1,22 @@
 ---
 import { links } from "../const";
+import { Icon } from "astro-icon";
+
 const networks = [
   {
     type: "LinkedIn",
     link: links.linkedin,
+    icon: "mdi:linkedin",
   },
   {
     type: "Twitter",
     link: links.twitter,
+    icon: "mdi:twitter",
   },
   {
     type: "Github",
     link: links.github,
+    icon: "mdi:github",
   },
 ];
 ---
@@ -21,11 +26,18 @@ const networks = [
     networks.map((network) => (
       <li title={network.type}>
         <a
-          class={`ph ph-${network.type.toLowerCase()}-logo`}
           target="_blank"
           href={network.link}
           aria-label={`Reach me out with ${network.type}`}
-        />
+        >
+          <Icon
+            width="30"
+            height="30"
+            role="image"
+            name={network.icon}
+            aria-label={`${network.type} logo`}
+          />
+        </a>
       </li>
     ))
   }
@@ -45,10 +57,14 @@ const networks = [
     }
   }
   a {
+    display: flex;
     color: utils.color("tertiary");
     text-decoration: none;
-    font-size: 30px;
-    transition: color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    @include utils.font(text, m);
+
+    @include utils.skipIfNoMotionPrefered() {
+      transition: color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
     &:hover {
       color: utils.color("accent");

@@ -1,5 +1,7 @@
 ---
 import { links } from "../../const";
+import { Icon } from "astro-icon";
+
 const { id: nodeId } = Astro.props;
 ---
 
@@ -8,20 +10,32 @@ const { id: nodeId } = Astro.props;
   <h3>Don't hesitate to reach me out</h3>
   <ul>
     <li>
-      <a href={links.telegram} target="_blank">
-        <i class="ph ph-telegram-logo"></i>
-        Contact me with Telegram
-      </a>
-    </li>
-    <li>
       <a
         href={"mailto:" +
           links.mail +
           "?subject=Hi%20Roman%2C%20Happy%20to%20reach%20you!"}
         target="_blank"
       >
-        <i class="ph ph-envelope"></i>
-        Contact me with E-mail
+        <Icon
+          width="1em"
+          height="1em"
+          role="image"
+          name="mdi:email-outline"
+          aria-label={`Email logo`}
+        />
+        Contact me with e-mail
+      </a>
+    </li>
+    <li>
+      <a href={links.telegram} target="_blank">
+        <Icon
+          width="1em"
+          height="1em"
+          role="image"
+          name="mdi:telegram"
+          aria-label={`Telegram logo`}
+        />
+        Contact me with Telegram
       </a>
     </li>
   </ul>
@@ -58,14 +72,19 @@ const { id: nodeId } = Astro.props;
   li {
     @include utils.font(text, l);
     color: utils.text-color(secondary);
-    transition: color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    @include utils.skipIfNoMotionPrefered() {
+      transition: color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
     &:hover {
       color: utils.text-color(secondary-hover);
     }
 
     a {
-      display: block;
+      display: flex;
+      gap: 0.4em;
+      align-items: center;
       @include utils.applyTextGradient(
         linear-gradient(
           45deg,
@@ -74,10 +93,13 @@ const { id: nodeId } = Astro.props;
         )
       );
       border-radius: 8px;
-      padding: 12px 4px;
-      transition-property: transform, box-shadow;
-      transition-duration: 0.2s;
-      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      padding: 12px 8px;
+
+      @include utils.skipIfNoMotionPrefered() {
+        transition-property: transform, box-shadow;
+        transition-duration: 0.2s;
+        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
 
       &:hover {
         transform: translateY(2px) scale(1.01);

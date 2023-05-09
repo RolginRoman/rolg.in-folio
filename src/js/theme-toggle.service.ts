@@ -1,8 +1,16 @@
-const saveUserTheme = (theme: "light" | "dark") => {
-  localStorage.setItem("theme", theme);
+export type Theme = "light" | "dark";
+
+const setTheme = (theme: Theme) => {
+  document.cookie = `theme=${theme}`;
+  return localStorage ? localStorage.setItem("theme", theme) : void 0;
 };
-const getCurrentUserTheme = () => {
-  const lsTheme = localStorage?.getItem("theme");
+
+const getTheme = (): Theme | undefined => {
+  return localStorage?.getItem("theme") as Theme | undefined;
+};
+
+export const getCurrentUserTheme = () => {
+  const lsTheme = getTheme();
   if (lsTheme) {
     if (lsTheme === "dark" || lsTheme === "light") {
       return lsTheme;
@@ -10,37 +18,46 @@ const getCurrentUserTheme = () => {
       return "light";
     }
   }
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  if (window?.matchMedia("(prefers-color-scheme: dark)").matches) {
     return "dark";
   }
   return "light";
 };
 
-const theme = getCurrentUserTheme();
-
-const toggle = document.getElementById(
+const toggle = document?.getElementById(
   "themeToggle"
 ) as HTMLInputElement | null;
 
-if (theme === "light") {
-  document.documentElement.classList.remove("dark");
-  if (toggle) {
-    toggle.checked = true;
-  }
-} else {
-  document.documentElement.classList.add("dark");
-  if (toggle) {
-    toggle.checked = false;
-  }
-}
+export const reflectCurrentTheme = () => {
+  const theme = getCurrentUserTheme();
 
-saveUserTheme(theme);
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+    if (toggle) {
+      toggle.checked = true;
+    }
+  } else {
+    document.documentElement.classList.add("dark");
+    if (toggle) {
+      toggle.checked = false;
+    }
+  }
+
+  setTheme(theme);
+};
 
 const handleToggleChange = () => {
   const element = document.documentElement;
   element.classList.toggle("dark");
   const isDark = element.classList.contains("dark");
-  saveUserTheme(isDark ? "dark" : "light");
+  setTheme(isDark ? "dark" : "light");
 };
+
+window
+  .matchMedia("(prefers-color-scheme: dark)")
+  .addEventListener("change", ({ matches: isDark }) => {
+    setTheme(isDark ? "dark" : "light");
+    reflectCurrentTheme();
+  });
 
 toggle?.addEventListener("change", handleToggleChange);

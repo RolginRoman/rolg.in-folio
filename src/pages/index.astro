@@ -3,8 +3,6 @@ import "../styles/global.scss";
 // https://meowni.ca/font-style-matcher/
 // https://fontsource.org/fonts/alata
 // https://fontsource.org/fonts/inter????
-import "@fontsource/alata";
-import "@phosphor-icons/web/regular";
 import Layout from "@/layouts/Layout.astro";
 import About from "@/sections/About.astro";
 import Contacts from "@/sections/Contacts.astro";
@@ -23,6 +21,7 @@ import Tech from "@/sections/Tech.astro";
 
 <style lang="scss">
   @use "styles.scss" as utils;
+
   main {
     @include utils.contentMaxWidth();
     margin-top: 2rem;

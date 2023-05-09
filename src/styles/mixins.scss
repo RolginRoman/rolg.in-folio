@@ -12,3 +12,9 @@ $contentMaxWidth: 912px;
     text-align: center;
   }
 }
+
+@mixin skipIfNoMotionPrefered {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}

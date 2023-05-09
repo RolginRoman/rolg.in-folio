@@ -27,8 +27,8 @@ $palette: (
 $text: (
   light: (
     "main": rgb(66, 68, 110),
-    "secondary": rgb(149, 149, 149),
-    "secondary-hover": color.adjust(rgb(149, 149, 149), $lightness: -30%),
+    "secondary": rgb(117, 117, 117),
+    "secondary-hover": color.adjust(rgb(117, 117, 117), $lightness: -30%),
   ),
   dark: (
     "main": rgb(217, 217, 217),
