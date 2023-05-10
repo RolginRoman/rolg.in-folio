@@ -42,7 +42,8 @@ const baseImageDimension = 256;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 32px;
     @include utils.contentMaxWidth();
-    padding: 4rem 0 2rem;
+    padding: 1rem 0 2rem;
+    min-height: 70vh;
   }
 
   h1 {
@@ -57,10 +58,19 @@ const baseImageDimension = 256;
     color: utils.text-color(secondary);
   }
 
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .photo {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+    user-select: none;
+    pointer-events: none;
   }
 
   .border {

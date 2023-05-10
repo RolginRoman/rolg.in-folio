@@ -17,10 +17,43 @@ import ThemeToggle from "./ThemeToggle.astro";
 <style lang="scss">
   @use "styles.scss" as utils;
 
+  @keyframes appear {
+    0% {
+      transform: translateY(-200%);
+    }
+
+    30% {
+      opacity: 1;
+    }
+
+    70% {
+      transform: translateY(20%);
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
   header {
     display: flex;
     align-items: center;
+    opacity: 0;
+    position: sticky;
+    z-index: 1;
+    top: -1px;
+    background-color: utils.color(light);
+
+    &.is-pinned {
+      background-color: utils.color(light, 0.7);
+    }
+
+    &.anim {
+      animation: appear 0.4s cubic-bezier(0, 0.78, 0.67, 0.84) forwards;
+    }
   }
+
   section {
     display: flex;
     align-items: center;
@@ -38,3 +71,27 @@ import ThemeToggle from "./ThemeToggle.astro";
     }
   }
 </style>
+
+<script>
+  const header = document.querySelector("header");
+  const events = ["scroll", "pointerdown", "keydown"];
+  if (header) {
+    const observer = new IntersectionObserver(
+      ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
+      { threshold: [1] }
+    );
+    observer.observe(header);
+  }
+
+  events.forEach((event) => {
+    window.addEventListener(
+      event,
+      (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        header?.classList.add("anim");
+      },
+      { once: true }
+    );
+  });
+</script>

@@ -1,7 +1,7 @@
 ---
 ---
 
-<label aria-label="Toggle dark mode">
+<label id="toggleLabel" aria-label="Toggle dark mode">
   <svg
     class="sun"
     width="30px"
@@ -51,8 +51,13 @@
     border-radius: 30px;
     cursor: pointer;
     background-color: var(--light-bg);
+
     @include skipIfNoMotionPrefered() {
       transition: background-color 0.5s cubic-bezier(0.37, 0.49, 0.26, 1.46);
+    }
+
+    &:not(.anim) {
+      transition: none;
     }
 
     &:focus-visible,
@@ -69,13 +74,6 @@
       position: absolute;
       z-index: -1;
     }
-
-    & input:checked {
-      & ~ .checkmark {
-        transform: translateX(calc(var(--label-width) - 115%));
-        box-shadow: inset 1px 0px 0 1px var(--indicator-fill);
-      }
-    }
   }
 
   .checkmark {
@@ -91,6 +89,15 @@
       transition: transform 0.5s cubic-bezier(0.37, 0.49, 0.26, 1.46),
         box-shadow 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
     }
+
+    input:checked ~ & {
+      transform: translateX(calc(var(--label-width) - 115%));
+      box-shadow: inset 1px 0px 0 1px var(--indicator-fill);
+    }
+
+    #toggleLabel:not(.anim) input ~ & {
+      transition: none;
+    }
   }
 
   .sun,
@@ -102,6 +109,10 @@
 
     @include skipIfNoMotionPrefered() {
       transition: all 0.5s cubic-bezier(0.37, 0.49, 0.26, 1.46);
+    }
+
+    #toggleLabel:not(.anim) & {
+      transition: none;
     }
   }
 
@@ -126,4 +137,9 @@
 
 <script>
   import "../js/theme-toggle.service.ts";
+  window.addEventListener("load", () => {
+    setTimeout(() =>
+      document.querySelector("#toggleLabel")?.classList.add("anim")
+    );
+  });
 </script>

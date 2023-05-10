@@ -17,8 +17,16 @@ const tech = [
     iconName: "logos:javascript",
   },
   {
-    name: "RxJs",
+    name: "RxJS",
     iconName: "logos:reactivex",
+  },
+  {
+    name: "Docker",
+    iconName: "logos:docker-icon",
+  },
+  {
+    name: "Nx",
+    iconName: "logos:nx",
   },
   {
     name: "HTML5",
@@ -29,7 +37,7 @@ const tech = [
     iconName: "logos:sass",
   },
   {
-    name: "Git Advanced",
+    name: "git",
     iconName: "logos:git-icon",
   },
   {
@@ -118,6 +126,12 @@ const tech = [
     border-radius: 8px;
     display: block;
     overflow: hidden;
+  }
+
+  [astro-icon="logos:html-5"] {
+    & :global(path:nth-child(4)) {
+      fill: utils.color(dark);
+    }
   }
 
   .tech-name {

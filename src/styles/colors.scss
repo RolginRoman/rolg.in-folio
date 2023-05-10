@@ -1,9 +1,14 @@
 @use "sass:map";
+@use "sass:color";
 @use "sass:string";
 @use "palette.scss" as palette;
 
 $_mainPalette: palette.$palette;
 $_textPalette: palette.$text;
+
+@function _rgbToSeparateChannels($rgb) {
+  @return red($rgb), green($rgb), blue($rgb);
+}
 
 @function _getCssVarFromMap($color-map, $colorName, $prefix) {
   @if (map.has-key($color-map, $colorName)) {
@@ -35,6 +40,7 @@ $_textPalette: palette.$text;
   @each $paletteColorName, $color in map.get($_mainPalette, $theme) {
     $colorName: _paletteCssVarName($paletteColorName);
     --#{$colorName}: #{$color};
+    --#{$colorName}--rgb: #{_rgbToSeparateChannels($color)};
   }
   @each $textColorName, $color in map.get($_textPalette, $theme) {
     $colorName: _textColorCssVarName($textColorName);
@@ -56,8 +62,15 @@ $_textPalette: palette.$text;
   }
 }
 
-@function color($colorName) {
-  @return var(string.unquote("--" + _paletteCssVarName($colorName)));
+@function color($colorName, $opacity: null) {
+  @if $opacity == null {
+    @return var(string.unquote("--" + _paletteCssVarName($colorName)));
+  } @else {
+    @return rgba(
+      var(string.unquote("--" + _paletteCssVarName($colorName) + "--rgb")),
+      $opacity
+    );
+  }
 }
 
 @function text-color($colorName) {
