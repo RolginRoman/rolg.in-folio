@@ -19,7 +19,6 @@ const { id: nodeId } = Astro.props;
         <Icon
           width="1em"
           height="1em"
-          role="image"
           name="mdi:email-outline"
           aria-label={`Email logo`}
         />
@@ -31,7 +30,6 @@ const { id: nodeId } = Astro.props;
         <Icon
           width="1em"
           height="1em"
-          role="image"
           name="mdi:telegram"
           aria-label={`Telegram logo`}
         />
@@ -56,7 +54,7 @@ const { id: nodeId } = Astro.props;
   }
 
   h3 {
-    @include utils.font(text, m);
+    @include utils.font(text, l);
     color: utils.text-color("main");
   }
   ul {
@@ -67,10 +65,9 @@ const { id: nodeId } = Astro.props;
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    font-size: 36px;
   }
   li {
-    @include utils.font(text, l);
+    @include utils.font(text, m);
     color: utils.text-color(secondary);
 
     @include utils.skipIfNoMotionPrefered() {

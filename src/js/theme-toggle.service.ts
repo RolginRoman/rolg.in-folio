@@ -1,8 +1,7 @@
 export type Theme = "light" | "dark";
 
 const setTheme = (theme: Theme) => {
-  document.cookie = `theme=${theme}`;
-  return localStorage ? localStorage.setItem("theme", theme) : void 0;
+  return localStorage ? localStorage.setItem("theme", theme) : undefined;
 };
 
 const getTheme = (): Theme | undefined => {

@@ -11,7 +11,7 @@
     "runeslint": "eslint src/**/*.astro",
     "lint": "yarn runeslint && yarn astro check",
     "killdev": "lsof -i :3000 | grep node | awk '{print $2}' | xargs kill -9",
-    "dev-watch": "yarn dev && chokidar \"**/*.scss\" -c \"yarn killdev && yarn dev\"",
+    "dev-watch": "yarn chokidar \"**/*.scss\" -c \"yarn killdev && yarn dev\"",
     "astro": "astro"
   },
   "devDependencies": {

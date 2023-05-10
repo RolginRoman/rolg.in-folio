@@ -5,10 +5,10 @@
 $_fonts: (
   heading: (
     xl: 52px 800 56px 0 24px 700 32px 0,
-    m: 48px 700 30px 0 24px 700 32px 0,
+    m: 48px 700 52px 0 24px 700 32px 0,
   ),
   text: (
-    l: 32px 500 42px 0 24px 500 34px 0,
+    l: 32px 500 42px 0 22px 500 30px 0,
     m: 28px 500 38px 0 22px 500 32px 0,
   ),
   caption: (
@@ -20,6 +20,7 @@ $_fonts: (
 @mixin font($scope, $size) {
   $font: map.get($_fonts, $scope, $size);
 
+  // TODO apply as css vars. init font scope's vars at :root
   font-size: list.nth($font, 1);
   font-weight: list.nth($font, 2);
   line-height: list.nth($font, 3);
@@ -41,21 +42,15 @@ $_fonts: (
     @each $size, $valuesList in $scopedFonts {
       $desktopWeight: list.nth($valuesList, 2);
       $mobileWeight: list.nth($valuesList, 6);
-      @if not map.has-key($allWeights, $desktopWeight) {
-        $allWeights: map.set(
-          $allWeights,
-          $desktopWeight,
-          "@fontsource/inter/files/inter-latin-#{$desktopWeight}-normal.woff2"
-            "@fontsource/inter/files/inter-latin-#{$desktopWeight}-normal.woff"
-        );
-      }
-      @if not map.has-key($allWeights, $mobileWeight) {
-        $allWeights: map.set(
-          $allWeights,
-          $mobileWeight,
-          "@fontsource/inter/files/inter-latin-#{$mobileWeight}-normal.woff2"
-            "@fontsource/inter/files/inter-latin-#{$mobileWeight}-normal.woff"
-        );
+      @each $deviceSpecificWeight in $desktopWeight $mobileWeight {
+        @if not map.has-key($allWeights, $deviceSpecificWeight) {
+          $allWeights: map.set(
+            $allWeights,
+            $deviceSpecificWeight,
+            "@fontsource/inter/files/inter-latin-#{$deviceSpecificWeight}-normal.woff2"
+              "@fontsource/inter/files/inter-latin-#{$deviceSpecificWeight}-normal.woff"
+          );
+        }
       }
     }
   }
@@ -66,6 +61,7 @@ $_fonts: (
       $display: fallback,
       $woff2Path: list.nth($links, 1),
       $woffPath: list.nth($links, 2),
+      // only latin unicode symbols
       $unicodeRange: false
     );
   }
