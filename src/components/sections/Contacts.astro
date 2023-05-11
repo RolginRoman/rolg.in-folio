@@ -11,28 +11,17 @@ const { id: nodeId } = Astro.props;
   <ul>
     <li>
       <a
-        href={"mailto:" +
-          links.mail +
-          "?subject=Hi%20Roman%2C%20Happy%20to%20reach%20you!"}
+        href={"mailto:" + links.mail + "?subject=Hi%20Roman%2C%20Happy%20to%20reach%20you!"}
         target="_blank"
+        rel="noopener noreferrer"
       >
-        <Icon
-          width="1em"
-          height="1em"
-          name="mdi:email-outline"
-          aria-label={`Email logo`}
-        />
+        <Icon width="1em" height="1em" name="mdi:email-outline" aria-label={`Email logo`} />
         Contact me with e-mail
       </a>
     </li>
     <li>
-      <a href={links.telegram} target="_blank">
-        <Icon
-          width="1em"
-          height="1em"
-          name="mdi:telegram"
-          aria-label={`Telegram logo`}
-        />
+      <a href={links.telegram} target="_blank" rel="noopener noreferrer">
+        <Icon width="1em" height="1em" name="mdi:telegram" aria-label={`Telegram logo`} />
         Contact me with Telegram
       </a>
     </li>
@@ -83,11 +72,7 @@ const { id: nodeId } = Astro.props;
       gap: 0.4em;
       align-items: center;
       @include utils.applyTextGradient(
-        linear-gradient(
-          45deg,
-          #{utils.color("accent")},
-          #{utils.color("secondary")} 30%
-        )
+        linear-gradient(45deg, #{utils.color("accent")}, #{utils.color("secondary")} 30%)
       );
       border-radius: 8px;
       padding: 12px 8px;
@@ -100,8 +85,7 @@ const { id: nodeId } = Astro.props;
 
       &:hover {
         transform: translateY(2px) scale(1.01);
-        box-shadow: 0 0 3px 0 utils.color(accent),
-          2px 2px 0 0 utils.color(secondary);
+        box-shadow: 0 0 3px 0 utils.color(accent), 2px 2px 0 0 utils.color(secondary);
       }
     }
   }
