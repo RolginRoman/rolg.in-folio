@@ -14,8 +14,26 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  R_BASE_URL: ${{ vars.R_BASE_URL }}
+  R_HOSTNAME: ${{ vars.R_HOSTNAME }}
+
 jobs:
+  display-variables:
+    name: Show build env vars
+    if: ${{ vars.R_HOSTNAME != null }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use variables
+        run: |
+          echo "base url : $R_BASE_URL"
+          echo "hostname : $R_HOSTNAME"
+        env:
+          R_BASE_URL: ${{ vars.R_BASE_URL }}
+          R_HOSTNAME: ${{ vars.R_HOSTNAME }}
+
   build:
+    needs: display-variables
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
