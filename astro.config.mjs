@@ -1,33 +1,30 @@
 import { defineConfig } from "astro/config";
+import { loadEnv } from "vite";
+import { resolve } from "path";
 import purgecss from "astro-purgecss";
-// import critters from "astro-critters";
+import critters from "astro-critters";
 
-// import compress from "astro-compress";
+const env = loadEnv(process.env.MODE, resolve(process.cwd(), "environment"), "");
+const { R_BASE_URL, R_HOSTNAME } = env;
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://rolginroman.github.io",
-  // base: env;
+  site: R_HOSTNAME,
+  base: R_BASE_URL,
   output: "static",
   integrations: [
     purgecss(),
-    // critters({
-    //   critters: {
-    //     path: "public",
-    //     logLevel: "trace",
-    //   },
-    // }),
-    // compress(),
+    critters({
+      critters: {
+        publicPath: R_BASE_URL,
+      },
+    }),
   ],
   build: {
     assets: "public",
   },
   vite: {
-    server: {
-      watch: {
-        useFsEvents: true,
-      },
-    },
+    envDir: "environment",
     css: {
       preprocessorOptions: {
         scss: {

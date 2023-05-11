@@ -29,6 +29,7 @@
     "normalize.css": "^8.0.1",
     "prettier": "^2.8.8",
     "prettier-plugin-astro": "^0.8.0",
-    "sass": "^1.62.1"
+    "sass": "^1.62.1",
+    "astro-critters": "^1.1.34"
   }
 }
