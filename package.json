@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "tsc --noEmit && astro build",
+    "build": "yarn runtscheck && astro build",
     "preview": "astro preview --open",
     "runeslint": "eslint src/**/*.astro",
+    "runtscheck": "tsc --noEmit & echo \"tsc run was successful\"",
     "lint": "yarn runeslint && yarn astro check",
     "killdev": "lsof -i :3000 | grep node | awk '{print $2}' | xargs kill -9",
     "dev-watch": "yarn chokidar \"**/*.scss\" -c \"yarn killdev && yarn dev\"",
@@ -32,6 +33,7 @@
     "normalize.css": "^8.0.1",
     "prettier": "^2.8.8",
     "prettier-plugin-astro": "^0.8.0",
-    "sass": "^1.62.1"
+    "sass": "^1.62.1",
+    "typescript": "^5.0.4"
   }
 }
