@@ -134,9 +134,7 @@ const { disableInteractions = false } = Astro.props;
         if (header) {
           observer?.unobserve(header);
         }
-        events.forEach((event) =>
-          window.removeEventListener(event, handleEvent)
-        );
+        events.forEach((event) => window.removeEventListener(event, handleEvent));
       };
     }
   };

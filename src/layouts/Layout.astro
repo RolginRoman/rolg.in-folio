@@ -5,7 +5,7 @@ import Footer from "../components/Footer.astro";
 
 export interface Props {
   title: string;
-  disableInteractions?: boolean
+  disableInteractions?: boolean;
 }
 
 const { title, disableInteractions = false } = Astro.props;
@@ -18,10 +18,7 @@ const { title, disableInteractions = false } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <title>{title}</title>
     <script>
@@ -41,12 +38,7 @@ const { title, disableInteractions = false } = Astro.props;
   :root {
     @include applyPalette();
     // @include applyFontFace();
-    --accent-gradient: linear-gradient(
-      45deg,
-      #{color("accent")},
-      #{color("main")} 30%,
-      #{color("light")} 60%
-    );
+    --accent-gradient: linear-gradient(45deg, #{color("accent")}, #{color("main")} 30%, #{color("light")} 60%);
   }
 
   html {
@@ -70,11 +62,11 @@ const { title, disableInteractions = false } = Astro.props;
 <script>
   import { matchReducedMotion } from "../js/media.service";
   const onScroll = () => {
-    let scroll =
-      window.pageYOffset / (document.body.offsetHeight - window.innerHeight);
+    let scroll = window.pageYOffset / (document.body.offsetHeight - window.innerHeight);
     scroll = isFinite(scroll) ? scroll : 0;
     document.body.style.setProperty("--scroll", `${scroll}`);
   };
+  
   const handleScroll = (matches: boolean) => {
     if (!matches) {
       window.addEventListener("scroll", onScroll, false);
