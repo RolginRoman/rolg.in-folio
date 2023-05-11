@@ -3,13 +3,14 @@ import { loadEnv } from "vite";
 import { resolve } from "path";
 import purgecss from "astro-purgecss";
 import critters from "astro-critters";
+import basicSsl from "@vitejs/plugin-basic-ssl";
 
 const env = loadEnv(process.env.MODE, resolve(process.cwd(), "environment"), "");
-const { R_BASE_URL, R_HOSTNAME } = env;
+const { R_BASE_URL, R_HOSTNAME, SSL } = env;
 
 // https://astro.build/config
 export default defineConfig({
-  site: R_HOSTNAME,
+  site: `${R_HOSTNAME}${R_BASE_URL}`,
   base: R_BASE_URL,
   output: "static",
   integrations: [
@@ -25,6 +26,10 @@ export default defineConfig({
   },
   vite: {
     envDir: "environment",
+    server: {
+      https: !!SSL,
+    },
+    plugins: [SSL ? basicSsl() : undefined],
     css: {
       preprocessorOptions: {
         scss: {

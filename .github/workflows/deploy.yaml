@@ -7,6 +7,7 @@ on:
       - "**/*.{astro,scss,js,css,ts,tsx,html}"
       - "public/**"
       - "astro.config.mjs"
+      - ".github/**"
   workflow_dispatch:
 
 permissions:

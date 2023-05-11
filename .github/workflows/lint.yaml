@@ -4,11 +4,6 @@ on:
   push:
     branches-ignore:
       - main
-  pull_request:
-    branches:
-      - main
-    types:
-      - opened
   workflow_dispatch:
 
 permissions:
