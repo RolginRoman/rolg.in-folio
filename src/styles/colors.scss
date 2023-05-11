@@ -19,19 +19,11 @@ $_textPalette: palette.$text;
 }
 
 @function _paletteCssVarName($colorName) {
-  @return _getCssVarFromMap(
-    map.get($_mainPalette, light),
-    $colorName,
-    "palette-"
-  );
+  @return _getCssVarFromMap(map.get($_mainPalette, light), $colorName, "palette-");
 }
 
 @function _textColorCssVarName($colorName) {
-  @return _getCssVarFromMap(
-    map.get($_textPalette, light),
-    $colorName,
-    "text-color-"
-  );
+  @return _getCssVarFromMap(map.get($_textPalette, light), $colorName, "text-color-");
 }
 
 @mixin _applyThemePalette($theme) {
@@ -66,10 +58,7 @@ $_textPalette: palette.$text;
   @if $opacity == null {
     @return var(string.unquote("--" + _paletteCssVarName($colorName)));
   } @else {
-    @return rgba(
-      var(string.unquote("--" + _paletteCssVarName($colorName) + "--rgb")),
-      $opacity
-    );
+    @return rgba(var(string.unquote("--" + _paletteCssVarName($colorName) + "--rgb")), $opacity);
   }
 }
 

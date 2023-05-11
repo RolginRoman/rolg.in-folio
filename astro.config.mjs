@@ -1,12 +1,24 @@
 import { defineConfig } from "astro/config";
 import purgecss from "astro-purgecss";
+// import critters from "astro-critters";
+
+// import compress from "astro-compress";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://rolginroman.github.io",
-  base: "/rolg.in-folio",
+  // base: env;
   output: "static",
-  integrations: [purgecss()],
+  integrations: [
+    purgecss(),
+    // critters({
+    //   critters: {
+    //     path: "public",
+    //     logLevel: "trace",
+    //   },
+    // }),
+    // compress(),
+  ],
   build: {
     assets: "public",
   },
@@ -23,8 +35,5 @@ export default defineConfig({
         },
       },
     },
-  },
-  experimental: {
-    inlineStylesheets: "auto",
   },
 });

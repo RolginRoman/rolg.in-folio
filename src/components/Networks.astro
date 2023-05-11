@@ -25,17 +25,8 @@ const networks = [
   {
     networks.map((network) => (
       <li title={network.type}>
-        <a
-          target="_blank"
-          href={network.link}
-          aria-label={`Reach me out with ${network.type}`}
-        >
-          <Icon
-            width="30"
-            height="30"
-            name={network.icon}
-            aria-label={`${network.type} logo`}
-          />
+        <a target="_blank" href={network.link} aria-label={`Reach me out with ${network.type}`}>
+          <Icon width="30" height="30" name={network.icon} aria-label={`${network.type} logo`} />
         </a>
       </li>
     ))

@@ -18,3 +18,9 @@ $contentMaxWidth: 912px;
     @content;
   }
 }
+
+@mixin onlyIfNoMotionPrefered {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

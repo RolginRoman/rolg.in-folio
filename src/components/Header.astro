@@ -3,11 +3,17 @@ import Logo from "./Logo.astro";
 import Networks from "./Networks.astro";
 import Menu from "./Menu.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+
+interface Props {
+  disableInteractions?: boolean;
+}
+
+const { disableInteractions = false } = Astro.props;
 ---
 
-<header>
+<header data-interactive={!disableInteractions}>
   <section>
-    <Logo height={65} />
+    <Logo width={52} />
     <Menu />
     <Networks />
     <i class="separator"></i>
@@ -26,9 +32,9 @@ import ThemeToggle from "./ThemeToggle.astro";
       opacity: 1;
     }
 
-    70% {
-      transform: translateY(20%);
-    }
+    // 70% {
+    // transform: translateY(10%);
+    // }
 
     100% {
       transform: translateY(0);
@@ -51,6 +57,18 @@ import ThemeToggle from "./ThemeToggle.astro";
 
     &.anim {
       animation: appear 0.4s cubic-bezier(0, 0.78, 0.67, 0.84) forwards;
+
+      @include utils.onlyIfNoMotionPrefered() {
+        animation: none;
+      }
+    }
+
+    &:not([data-interactive]) {
+      opacity: 1;
+    }
+
+    @include utils.onlyIfNoMotionPrefered() {
+      opacity: 1;
     }
   }
 
@@ -59,6 +77,12 @@ import ThemeToggle from "./ThemeToggle.astro";
     align-items: center;
     justify-content: space-between;
     @include utils.contentMaxWidth();
+    color: utils.text-color(secondary);
+    transition: color 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+    &:hover {
+      color: utils.text-color(main);
+    }
   }
 
   .separator {
@@ -73,25 +97,51 @@ import ThemeToggle from "./ThemeToggle.astro";
 </style>
 
 <script>
+  import { matchReducedMotion } from "../js/media.service";
+  let deleteSubscriptions = () => {};
   const header = document.querySelector("header");
-  const events = ["scroll", "pointerdown", "keydown"];
-  if (header) {
-    const observer = new IntersectionObserver(
-      ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
-      { threshold: [1] }
-    );
-    observer.observe(header);
-  }
 
-  events.forEach((event) => {
-    window.addEventListener(
-      event,
-      (event) => {
+  const handleReducedMotion = (isMatches: boolean) => {
+    if (isMatches) {
+      deleteSubscriptions();
+    } else {
+      const events = ["scroll", "pointerdown", "keydown"];
+      const body = document.querySelector("body");
+      let observer: IntersectionObserver;
+      if (header && body) {
+        observer = new IntersectionObserver(
+          ([e]) => {
+            const isPinned = e.intersectionRatio < 1;
+            e.target.classList.toggle("is-pinned", isPinned);
+            body.classList.toggle("pinned", isPinned);
+          },
+          { threshold: [1] }
+        );
+        observer.observe(header);
+      }
+
+      const handleEvent = (event: Event) => {
         event.preventDefault();
         event.stopPropagation();
         header?.classList.add("anim");
-      },
-      { once: true }
-    );
-  });
+      };
+
+      events.forEach((event) => {
+        window.addEventListener(event, handleEvent, { once: true });
+      });
+
+      deleteSubscriptions = () => {
+        if (header) {
+          observer?.unobserve(header);
+        }
+        events.forEach((event) =>
+          window.removeEventListener(event, handleEvent)
+        );
+      };
+    }
+  };
+
+  if (header?.dataset["interactive"] !== undefined) {
+    matchReducedMotion(handleReducedMotion);
+  }
 </script>
