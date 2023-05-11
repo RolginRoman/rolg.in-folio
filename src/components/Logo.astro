@@ -1,22 +1,19 @@
 ---
-type LogoTypes = "base" | "no-bg-blue";
+import { Icon } from "astro-icon";
 export interface Props {
-  type?: LogoTypes;
   width?: number | string;
   height?: number | string;
 }
 
-let { width, height, type } = Astro.props;
-type ??= "no-bg-blue";
+let { width, height } = Astro.props;
 width ??= 96;
 height ??= "auto";
 ---
 
-<img
-  src={type === "no-bg-blue"
-    ? "logo/logo-no-background.svg"
-    : "logo/logo-black.svg"}
+<Icon
+  name="logo"
   width={width}
-  height={height}
-  alt="Rolgin Roman personal logo, `RR` stands for `R`olgin `R`oman"
+  height={width}
+  optimize={false}
+  aria-label="Rolgin Roman personal logo, `RR` stands for `R`olgin `R`oman"
 />

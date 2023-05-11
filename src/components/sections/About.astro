@@ -43,7 +43,8 @@ const baseImageDimension = 256;
     grid-gap: 32px;
     @include utils.contentMaxWidth();
     padding: 1rem 0 2rem;
-    min-height: 70vh;
+    height: calc(100vh - var(--header-height));
+    transform: translateY(calc(var(--header-height) * -1));
   }
 
   h1 {
@@ -78,7 +79,7 @@ const baseImageDimension = 256;
     align-items: center;
     justify-content: center;
     background-image: linear-gradient(
-      0deg,
+      calc(1080deg * var(--scroll, 1/360)),
       #{utils.color(secondary)} 0%,
       #{utils.color(main)} 30%,
       #{utils.color(accent)} 60%

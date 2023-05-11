@@ -140,8 +140,14 @@ const tech = [
     margin-top: 1rem;
     cursor: default;
 
+    @include utils.onlyIfNoMotionPrefered {
+      opacity: 1;
+    }
+
     li:hover & {
-      animation: animateTechName 0.2s linear forwards;
+      @include utils.skipIfNoMotionPrefered {
+        animation: animateTechName 0.2s linear forwards;
+      }
     }
   }
 </style>

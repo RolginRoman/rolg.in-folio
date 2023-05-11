@@ -13,11 +13,7 @@ import Emoji from "astro-emoji";
   </section>
   <section class="menu">
     <Menu align="default" />
-    <a
-      class="tool"
-      href="https://astro.build"
-      aria-label="Link to Astro framework website"
-    >
+    <a class="tool" target="_blank" href="https://astro.build" aria-label="Link to Astro framework website">
       Crafted with&nbsp;<Emoji symbol="❤️" label="love" />&nbsp;and
       <Icon name="logos:astro" aria-label="Astro framework" />
     </a>
@@ -48,6 +44,12 @@ import Emoji from "astro-emoji";
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid utils.color("accent");
+    color: utils.text-color(secondary);
+    transition: color 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+    &:hover {
+      color: utils.text-color(main);
+    }
   }
 
   .tool {

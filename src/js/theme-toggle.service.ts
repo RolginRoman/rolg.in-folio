@@ -1,5 +1,5 @@
 export type Theme = "light" | "dark";
-
+const darkMedia = window.matchMedia("(prefers-color-scheme: dark)");
 const setTheme = (theme: Theme) => {
   return localStorage ? localStorage.setItem("theme", theme) : undefined;
 };
@@ -17,7 +17,7 @@ export const getCurrentUserTheme = () => {
       return "light";
     }
   }
-  if (window?.matchMedia("(prefers-color-scheme: dark)").matches) {
+  if (darkMedia.matches) {
     return "dark";
   }
   return "light";
@@ -52,11 +52,9 @@ const handleToggleChange = () => {
   setTheme(isDark ? "dark" : "light");
 };
 
-window
-  .matchMedia("(prefers-color-scheme: dark)")
-  .addEventListener("change", ({ matches: isDark }) => {
-    setTheme(isDark ? "dark" : "light");
-    reflectCurrentTheme();
-  });
+darkMedia.addEventListener("change", ({ matches: isDark }) => {
+  setTheme(isDark ? "dark" : "light");
+  reflectCurrentTheme();
+});
 
 toggle?.addEventListener("change", handleToggleChange);

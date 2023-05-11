@@ -1,0 +1,97 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "astro-icon";
+
+const mainPage = import.meta.env.SITE; // TODO correct env local/prod
+---
+
+<Layout title="Oops, this's an unpleasant place" disableInteractions={true}>
+  <section>
+    <h1>404</h1>
+    <h2>Whoops, we've been lost for some time</h2>
+    <span>but</span>
+    <a href={mainPage}>This is the way<Icon class:list={["mando"]} name="mando" width="2em" height="2em" /></a>
+  </section>
+</Layout>
+
+<style lang="scss">
+  @use "sass:list";
+  @use "styles.scss" as utils;
+
+  section {
+    @include utils.contentMaxWidth();
+    display: grid;
+    place-content: center;
+    place-items: center;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 16em;
+    color: utils.text-color(main);
+    margin: 0.1em 0;
+  }
+
+  @include utils.centerHeaders();
+
+  h2 {
+    margin: 0.3em 0;
+  }
+
+  h2,
+  a {
+    @include utils.font(text, l);
+    color: utils.text-color(main);
+  }
+
+  span {
+    text-align: center;
+    @include utils.font(text, m);
+    color: utils.text-color(main);
+    margin: 0.3em 0;
+  }
+
+  a {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    margin: 0.3em 0;
+    padding: 0 18px;
+    $mandoGradientColor: utils.color(main) utils.color(secondary) utils.color(accent) transparent transparent;
+
+    @for $i from 1 through list.length($mandoGradientColor) {
+      --gradient-mando-stop-#{$i}: #{list.nth($mandoGradientColor, $i)};
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 0.1em;
+      bottom: 0;
+      left: 0;
+      border-radius: 0.2em;
+      transform: scaleX(0);
+      background-color: utils.color(secondary);
+      transform-origin: bottom right;
+
+      @include utils.skipIfNoMotionPrefered {
+        transition: transform 0.25s ease-out;
+      }
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+
+  .mando {
+    border-radius: 16px;
+    width: 3em;
+    height: 3em;
+    position: absolute;
+    bottom: -0.5em;
+    right: -2.5em;
+  }
+</style>

@@ -1,6 +1,6 @@
-{
-  astroAllowShorthand: false;
-  printWidth: 120;
-  semi: true;
-  singleQuote: false;
+module.exports = {
+  astroAllowShorthand: false,
+  printWidth: 120,
+  semi: true,
+  singleQuote: false,
 }
