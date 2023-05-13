@@ -2,6 +2,7 @@
 import "../styles/global.scss";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import ThemeInjector from "src/components/ThemeInjector.astro";
 
 export interface Props {
   title: string;
@@ -19,61 +20,59 @@ const { title, disableInteractions = false } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <ThemeInjector />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <title>{title}</title>
-    <script>
-      import { reflectCurrentTheme } from "../js/theme-toggle.service";
-      reflectCurrentTheme();
-    </script>
   </head>
   <body>
     <Header disableInteractions={disableInteractions} />
     <slot />
     <Footer />
+    <style is:global lang="scss">
+      @use "styles.scss" as *;
+
+      :root {
+        @include applyPalette();
+        // @include applyFontFace();
+        --accent-gradient: linear-gradient(45deg, #{color("accent")}, #{color("main")} 30%, #{color("light")} 60%);
+      }
+
+      html {
+        font-family: "Inter", "Helvetica", sans-serif;
+      }
+
+      body {
+        --header-height: 78px;
+
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        // grid-template-rows: var(--header-height) 1fr 15vh;
+        background-color: color("light");
+
+        & > *:nth-child(2) {
+          flex-grow: 1;
+        }
+      }
+    </style>
+
+    <script>
+      import { matchReducedMotion } from "@/scripts/media.service";
+      const onScroll = () => {
+        let scroll = window.pageYOffset / (document.body.offsetHeight - window.innerHeight);
+        scroll = isFinite(scroll) ? scroll : 0;
+        document.body.style.setProperty("--scroll", `${scroll}`);
+      };
+
+      const handleScroll = (matches: boolean) => {
+        if (!matches) {
+          window.addEventListener("scroll", onScroll, false);
+        } else {
+          window.removeEventListener("scroll", onScroll);
+        }
+      };
+
+      matchReducedMotion(handleScroll);
+    </script>
   </body>
 </html>
-<style is:global lang="scss">
-  @use "styles.scss" as *;
-
-  :root {
-    @include applyPalette();
-    // @include applyFontFace();
-    --accent-gradient: linear-gradient(45deg, #{color("accent")}, #{color("main")} 30%, #{color("light")} 60%);
-  }
-
-  html {
-    font-family: "Inter", sans-serif;
-  }
-
-  body {
-    --header-height: 78px;
-
-    min-height: 100vh;
-    display: grid;
-    grid-template-areas:
-      "header"
-      "content"
-      "footer";
-    grid-template-rows: var(--header-height) 1fr 15vh;
-    background-color: color("light");
-  }
-</style>
-
-<script>
-  import { matchReducedMotion } from "../js/media.service";
-  const onScroll = () => {
-    let scroll = window.pageYOffset / (document.body.offsetHeight - window.innerHeight);
-    scroll = isFinite(scroll) ? scroll : 0;
-    document.body.style.setProperty("--scroll", `${scroll}`);
-  };
-  
-  const handleScroll = (matches: boolean) => {
-    if (!matches) {
-      window.addEventListener("scroll", onScroll, false);
-    } else {
-      window.removeEventListener("scroll", onScroll);
-    }
-  };
-
-  matchReducedMotion(handleScroll);
-</script>

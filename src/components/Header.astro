@@ -65,6 +65,8 @@ const { disableInteractions = false } = Astro.props;
 
     &:not([data-interactive]) {
       opacity: 1;
+      position: static;
+      top: 0;
     }
 
     @include utils.onlyIfNoMotionPrefered() {
@@ -97,7 +99,7 @@ const { disableInteractions = false } = Astro.props;
 </style>
 
 <script>
-  import { matchReducedMotion } from "../js/media.service";
+  import { matchReducedMotion } from "@/scripts/media.service";
   let deleteSubscriptions = () => {};
   const header = document.querySelector("header");
 

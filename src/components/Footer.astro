@@ -13,10 +13,15 @@ import Emoji from "astro-emoji";
   </section>
   <section class="menu">
     <Menu align="default" />
-    <a class="tool" target="_blank" rel="noopener noreferrer" href="https://astro.build" aria-label="Link to Astro framework website">
+    <spac class="tool">
       Crafted with&nbsp;<Emoji symbol="❤️" label="love" />&nbsp;and
-      <Icon name="logos:astro" aria-label="Astro framework" />
-    </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://astro.build"
+        aria-label="Link to Astro framework website"><Icon name="logos:astro" aria-label="Astro framework" /></a
+      >
+    </spac>
   </section>
 </footer>
 <style lang="scss">
@@ -60,6 +65,7 @@ import Emoji from "astro-emoji";
     color: utils.text-color(secondary);
     --theme-text: utils.text-color(main);
     --theme-accent: utils.color(accent);
+    cursor: default;
 
     @include utils.skipIfNoMotionPrefered() {
       transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);

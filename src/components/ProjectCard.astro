@@ -7,6 +7,7 @@ interface Props {
   description: string;
   githubLink: string;
   tag?: string;
+  [key: string]: unknown;
 }
 
 const {
@@ -15,27 +16,19 @@ const {
   description,
   githubLink,
   tag = "div",
+  class: classNames,
+  ...rest
 } = Astro.props as Props;
 const Tag = tag;
 ---
 
-<Tag class:list={[{ card: true }]}>
-  <img
-    src={imageUrl}
-    alt={`Project ${projectName} Preview`}
-    width="230"
-    height="140"
-  />
+<Tag class:list={["card"]} {...rest}>
+  <img src={imageUrl} alt={`Project ${projectName} Preview`} width="230" height="140" />
   <div class="content">
     <h3>{projectName}</h3>
     <span class="description">{description}</span>
     <a class="link" href={githubLink} aria-label="View Code">
-      <Icon
-        width="1.5em"
-        height="1.5em"
-        name="mdi:github"
-        aria-label={`Github logo`}
-      /><span>View Code</span></a
+      <Icon width="1.5em" height="1.5em" name="mdi:github" aria-label={`Github logo`} /><span>View Code</span></a
     >
   </div>
 </Tag>
@@ -53,7 +46,8 @@ const Tag = tag;
       transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       transform: scale(1.02);
     }
   }

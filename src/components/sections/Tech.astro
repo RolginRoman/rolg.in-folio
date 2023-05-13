@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon";
 
-const { id: nodeId } = Astro.props;
+const { class: classNames, ...rest } = Astro.props;
 
 const tech = [
   {
@@ -37,7 +37,7 @@ const tech = [
     iconName: "logos:sass",
   },
   {
-    name: "git",
+    name: "Git",
     iconName: "logos:git-icon",
   },
   {
@@ -47,19 +47,14 @@ const tech = [
 ];
 ---
 
-<section id={nodeId} class="intro">
+<section class="intro" {...rest}>
   <h2>Tech</h2>
   <h3>Technologies I've been working with recently</h3>
   <ul>
     {
       tech.map((item) => (
         <li>
-          <Icon
-            name={item.iconName}
-            aria-label={item.name}
-            width="120"
-            height="120"
-          />
+          <Icon name={item.iconName} aria-label={item.name} width="120" height="120" />
           <span class="tech-name">{item.name}</span>
         </li>
       ))
@@ -143,10 +138,15 @@ const tech = [
     @include utils.onlyIfNoMotionPrefered {
       opacity: 1;
     }
+    @media (hover: none) {
+      opacity: 1;
+    }
 
-    li:hover & {
-      @include utils.skipIfNoMotionPrefered {
-        animation: animateTechName 0.2s linear forwards;
+    @media (hover: hover) {
+      li:hover & {
+        @include utils.skipIfNoMotionPrefered {
+          animation: animateTechName 0.2s linear forwards;
+        }
       }
     }
   }
