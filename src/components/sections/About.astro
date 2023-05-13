@@ -1,15 +1,17 @@
 ---
 import Emoji from "astro-emoji";
-const { id: nodeId } = Astro.props;
+import { links } from "../../const";
+import { Icon } from "astro-icon";
+
+const { class: classNames, ...rest } = Astro.props;
 const baseImageDimension = 256;
+const cvLink = links.cv;
 ---
 
-<summary id={nodeId}>
+<section {...rest} class="about">
   <section class="intro">
     <h1>
-      Hi <Emoji symbol="👋" label="Hi" />, <br />My name is <br /><span
-        class="text-gradient">Roman Rolgin</span
-      ><br />
+      Hi <Emoji symbol="👋" label="Hi" />, <br />My name is <br /><span class="text-gradient">Roman Rolgin</span><br />
     </h1><h2>I build web apps</h2>
   </section>
   <section class="photo">
@@ -23,7 +25,18 @@ const baseImageDimension = 256;
       />
     </div>
   </section>
-</summary>
+  <a
+    class="cv"
+    href={cvLink}
+    rel="noopener nofollow noreferrer"
+    aria-label="Download Roman Rolgin's CV"
+    role="link"
+    target="_blank"
+  >
+    <Icon width="1.3em" height="1.3em" name="mdi:account-arrow-down-outline" />
+    Download CV
+  </a>
+</section>
 <style lang="scss">
   @use "styles.scss" as utils;
 
@@ -36,11 +49,13 @@ const baseImageDimension = 256;
     // background-position: 0%;
   }
 
-  summary {
+  .about {
     display: grid;
-    grid-template-areas: "intro photo";
+    grid-template-areas: "intro photo" "cv photo";
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 32px;
+    grid-template-rows: 1fr 3em;
+    row-gap: 0;
+    column-gap: 32px;
     @include utils.contentMaxWidth();
     padding: 1rem 0 2rem;
     height: calc(100vh - var(--header-height));
@@ -93,6 +108,30 @@ const baseImageDimension = 256;
     border-radius: 50%;
     object-fit: cover;
     object-position: center 25%;
-    // box-shadow: utils.color("accent") 0px 0px 0px 12px;
+    aspect-ratio: 1/1;
+  }
+
+  .cv {
+    display: flex;
+    align-items: flex-end;
+    width: max-content;
+    gap: 8px;
+    padding: 0.7em;
+    color: utils.text-color(secondary);
+    @include utils.font(caption, m);
+    line-height: 20px;
+    box-shadow: 0 1px 0px 0 utils.color(dark);
+    @include utils.skipIfNoMotionPrefered() {
+      transition: all 0.2s cubic-bezier(0.43, 0.73, 0.81, 0.89);
+    }
+
+    &:hover {
+      color: utils.text-color(secondary-hover);
+      fill: utils.color(accent);
+      @include utils.skipIfNoMotionPrefered() {
+        box-shadow: 0 1px 1px 0 utils.color(dark);
+        border-radius: 12px;
+      }
+    }
   }
 </style>

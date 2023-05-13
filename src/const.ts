@@ -4,4 +4,5 @@ export const links = {
   github: "https://github.com/rolginroman",
   telegram: "https://t.me/itisngguru",
   mail: "romanrolgin.fe@gmail.com",
+  cv: ""
 };

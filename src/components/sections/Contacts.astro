@@ -2,10 +2,10 @@
 import { links } from "../../const";
 import { Icon } from "astro-icon";
 
-const { id: nodeId } = Astro.props;
+const { class: classNames, ...rest } = Astro.props;
 ---
 
-<section id={nodeId} class="contacts">
+<section class="contacts" {...rest}>
   <h2>Contacts</h2>
   <h3>Don't hesitate to reach me out</h3>
   <ul>
@@ -15,13 +15,13 @@ const { id: nodeId } = Astro.props;
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Icon width="1em" height="1em" name="mdi:email-outline" aria-label={`Email logo`} />
+        <Icon width="1em" height="1em" name="mdi:email-outline" aria-label="Email logo" />
         Contact me with e-mail
       </a>
     </li>
     <li>
       <a href={links.telegram} target="_blank" rel="noopener noreferrer">
-        <Icon width="1em" height="1em" name="mdi:telegram" aria-label={`Telegram logo`} />
+        <Icon width="1em" height="1em" name="mdi:telegram" aria-label="Telegram logo" />
         Contact me with Telegram
       </a>
     </li>

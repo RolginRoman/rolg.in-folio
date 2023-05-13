@@ -1,6 +1,6 @@
 ---
 import ProjectCard from "../ProjectCard.astro";
-const { id: nodeId } = Astro.props;
+const { class: classNames, ...rest } = Astro.props;
 const projects = [
   {
     projectName: "blabla",
@@ -26,30 +26,22 @@ const projects = [
 ];
 ---
 
-<section id={nodeId} class="projects">
+<section class="projects" {...rest}>
   <h2>Projects</h2><h3>Things I've worked on in the recent past</h3>
   <article>
     <p>
-      Software engineer with more than 8 years of experience in web development.
-      Proficient in frontend frameworks like Angular, Typescript, and system
-      architecture.
+      Software engineer with more than 8 years of experience in web development. Proficient in frontend frameworks like
+      Angular, Typescript, and system architecture.
     </p>
     <p>
-      Moreover, I led teams with guidance to projects' completion. Passionate
-      about user-centric design, UX and business metrics optimisations via
-      development and people management.
+      Moreover, I led teams with guidance to projects' completion. Passionate about user-centric design, UX and business
+      metrics optimisations via development and people management.
     </p>
   </article>
   <ul class="projects-list">
     {
       projects.map(({ projectName, description, githubLink, imageUrl }) => (
-        <ProjectCard
-          tag="li"
-          {projectName}
-          {description}
-          {imageUrl}
-          {githubLink}
-        />
+        <ProjectCard tabindex="0" tag="li" {projectName} {description} {imageUrl} {githubLink} />
       ))
     }
   </ul>

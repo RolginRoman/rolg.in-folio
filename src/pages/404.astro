@@ -10,7 +10,9 @@ const mainPage = import.meta.env.SITE; // TODO correct env local/prod
     <h1>404</h1>
     <h2>Whoops, we've been lost for some time</h2>
     <span>but</span>
-    <a href={mainPage}>This is the way<Icon class:list={["mando"]} name="mando" width="2em" height="2em" /></a>
+    <a href={mainPage} aria-label="Go to home page"
+      >This is the way<Icon class:list={["mando"]} name="mando" width="2em" height="2em" aria-hidden="true" /></a
+    >
   </section>
 </Layout>
 
@@ -56,7 +58,7 @@ const mainPage = import.meta.env.SITE; // TODO correct env local/prod
     position: relative;
     justify-content: center;
     margin: 0.3em 0;
-    padding: 0 18px;
+    padding: 0 8px;
     $mandoGradientColor: utils.color(main) utils.color(secondary) utils.color(accent) transparent transparent;
 
     @for $i from 1 through list.length($mandoGradientColor) {
@@ -92,6 +94,6 @@ const mainPage = import.meta.env.SITE; // TODO correct env local/prod
     height: 3em;
     position: absolute;
     bottom: -0.5em;
-    right: -2.5em;
+    right: -2.8em;
   }
 </style>
