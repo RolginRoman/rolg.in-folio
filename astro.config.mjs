@@ -20,12 +20,12 @@ export default defineConfig({
   base: R_BASE_URL,
   output: "static",
   integrations: [
-    purgecss(),
-    critters({
-      critters: {
-        publicPath: R_BASE_URL,
-      },
-    }),
+    // purgecss(),
+    // critters({
+    // critters: {
+    // publicPath: R_BASE_URL,
+    // },
+    // }),
   ],
   build: {
     assets: "public",

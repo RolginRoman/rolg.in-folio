@@ -61,6 +61,7 @@ import Emoji from "astro-emoji";
     display: flex;
     align-items: center;
     flex: 0 0 auto;
+    margin-left: 12px;
     @include utils.font(caption, s);
     color: utils.text-color(secondary);
     --theme-text: utils.text-color(main);
@@ -83,7 +84,7 @@ import Emoji from "astro-emoji";
   [astro-icon="logos:astro"] {
     display: inline-block;
     height: 2em;
-    margin-left: 12px;
+    padding: 0 1em;
 
     & :global(path) {
       @include utils.skipIfNoMotionPrefered() {
