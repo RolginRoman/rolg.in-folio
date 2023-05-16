@@ -41,12 +41,13 @@ const cvLink = links.cv;
   @use "styles.scss" as utils;
 
   .text-gradient {
+    --accent-gradient: linear-gradient(
+      45deg,
+      #{utils.color(accent)},
+      #{utils.color(main)} 30%,
+      #{utils.color(light)} 60%
+    );
     @include utils.applyTextGradient(var(--accent-gradient));
-    // background-image: var(--accent-gradient);
-    // -webkit-background-clip: text;
-    // -webkit-text-fill-color: transparent;
-    // background-size: 400%;
-    // background-position: 0%;
   }
 
   .about {
@@ -120,7 +121,11 @@ const cvLink = links.cv;
     color: utils.text-color(secondary);
     @include utils.font(caption, m);
     line-height: 20px;
+    background-color: utils.color(light);
     box-shadow: 0 1px 0px 0 utils.color(dark);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+
     @include utils.skipIfNoMotionPrefered() {
       transition: all 0.2s cubic-bezier(0.43, 0.73, 0.81, 0.89);
     }

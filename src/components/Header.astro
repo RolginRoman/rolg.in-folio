@@ -32,10 +32,6 @@ const { disableInteractions = false } = Astro.props;
       opacity: 1;
     }
 
-    // 70% {
-    // transform: translateY(10%);
-    // }
-
     100% {
       transform: translateY(0);
       opacity: 1;
@@ -52,7 +48,7 @@ const { disableInteractions = false } = Astro.props;
     background-color: utils.color(light);
 
     &.is-pinned {
-      background-color: utils.color(light, 0.7);
+      background-color: utils.color(light, 0.8);
     }
 
     &.anim {
@@ -90,10 +86,11 @@ const { disableInteractions = false } = Astro.props;
   .separator {
     height: 2rem;
     margin: 0 1.5rem;
-    border-right: 2px solid utils.color(secondary);
+    --border-color: #{utils.color(secondary)};
+    border-right: 2px solid var(--border-color);
 
     @include utils.withDark() {
-      border-right: 2px solid utils.text-color(secondary);
+      --border-color: #{utils.text-color(secondary)};
     }
   }
 </style>

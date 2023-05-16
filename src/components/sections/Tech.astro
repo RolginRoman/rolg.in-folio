@@ -21,10 +21,6 @@ const tech = [
     iconName: "logos:reactivex",
   },
   {
-    name: "Docker",
-    iconName: "logos:docker-icon",
-  },
-  {
     name: "Nx",
     iconName: "logos:nx",
   },
@@ -39,6 +35,10 @@ const tech = [
   {
     name: "Git",
     iconName: "logos:git-icon",
+  },
+  {
+    name: "Docker",
+    iconName: "logos:docker-icon",
   },
   {
     name: "Node.js",
@@ -101,8 +101,8 @@ const tech = [
     margin: 1.4rem 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 5vw;
     @include utils.font(caption, m);
     color: utils.text-color("secondary");
   }

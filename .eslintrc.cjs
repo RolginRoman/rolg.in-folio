@@ -20,9 +20,9 @@ module.exports = {
         parser: "@typescript-eslint/parser",
       },
       rules: {
+        "react/jsx-no-target-blank": "error",
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_", ignoreRestSiblings: true }],
-        "react/jsx-no-target-blank": "error",
       },
     },
     {
