@@ -1,17 +1,28 @@
 ---
 import { Icon } from "astro-icon";
 export interface Props {
-  width?: number | string;
+  width: number;
 }
 
 let { width } = Astro.props;
 width ??= 96;
+const widthVar = `${width}px`;
 ---
 
-<Icon
-  name="logo"
-  width={width}
-  height={width}
-  optimize={false}
-  aria-label="Rolgin Roman personal logo, `RR` stands for `R`olgin `R`oman"
-/>
+<div>
+  <Icon
+    class="logo"
+    name="logo"
+    width="100%"
+    height="100%"
+    optimize={false}
+    aria-label="Rolgin Roman personal logo, `RR` stands for `R`olgin `R`oman"
+  />
+</div>
+<style define:vars={{ iconWidth: widthVar }}>
+  div {
+    display: flex;
+    width: var(--iconWidth);
+    min-width: var(--iconWidth);
+  }
+</style>

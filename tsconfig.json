@@ -2,6 +2,9 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "baseUrl": ".",
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
     "paths": {
       "@/sections/*": ["src/components/sections/*"],
       "@/layouts/*": ["src/layouts/*"],

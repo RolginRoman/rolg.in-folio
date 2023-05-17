@@ -45,6 +45,8 @@ const { title, disableInteractions = false } = Astro.props;
       body {
         --header-height: 78px;
 
+        overflow-x: hidden; //temp
+
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -63,7 +65,7 @@ const { title, disableInteractions = false } = Astro.props;
           height: 130%;
           max-height: 100vh;
           background: linear-gradient(to bottom, transparent 75%, #{color("light")}) 0% 0% / 100vw 100%,
-            radial-gradient(#{color("secondary", 0.5)} 8%, transparent 8%) 0% 0% / 1vmin 1vmin;
+            radial-gradient(#{color("secondary", 0.5)} 0.05em, transparent 0.05em) 0% 0% / 1vmin 1vmin;
           pointer-events: none;
           z-index: -1;
         }
