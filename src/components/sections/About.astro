@@ -61,6 +61,15 @@ const cvLink = links.cv;
     padding: 1rem 0 2rem;
     height: calc(100vh - var(--header-height));
     transform: translateY(calc(var(--header-height) * -1));
+
+    @include utils.tablet {
+      // grid-template-columns: 1fr;
+      // grid-temlate-rows: unset;
+      // grid-template-areas: "intro" "photo" "cv";
+      display: flex;
+      justify-content: space-around;
+      transform: none;
+    }
   }
 
   h1 {
@@ -88,6 +97,10 @@ const cvLink = links.cv;
     justify-content: flex-end;
     user-select: none;
     pointer-events: none;
+
+    @include utils.tablet {
+      justify-content: flex-start;
+    }
   }
 
   .border {
@@ -121,7 +134,7 @@ const cvLink = links.cv;
     color: utils.text-color(secondary);
     @include utils.font(caption, m);
     line-height: 20px;
-    background-color: utils.color(light);
+    background-color: transparent; // utils.color(light);
     box-shadow: 0 1px 0px 0 utils.color(dark);
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;

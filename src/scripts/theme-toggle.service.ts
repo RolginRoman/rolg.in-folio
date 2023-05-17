@@ -26,8 +26,13 @@ darkMedia.addEventListener("change", ({ matches: isDark }) => {
   reflectCurrentTheme(document.documentElement, isDark ? "dark" : "light");
 });
 
-const toggle = document?.getElementById("themeToggle") as HTMLInputElement | null;
+const toggle = document?.querySelectorAll<HTMLInputElement>(".themeToggle") as NodeListOf<HTMLInputElement>;
 if (toggle) {
-  toggle.checked = getCurrentUserTheme() === "light";
-  toggle.addEventListener("change", handleToggleChange);
+  toggle.forEach((toggleElem) => {
+    if (!toggleElem) {
+      return;
+    }
+    toggleElem.checked = getCurrentUserTheme() === "light";
+    toggleElem.addEventListener("change", handleToggleChange);
+  });
 }

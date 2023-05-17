@@ -14,10 +14,17 @@ const { disableInteractions = false } = Astro.props;
 <header data-interactive={!disableInteractions}>
   <section>
     <Logo width={52} />
-    <Menu />
-    <Networks />
+    <Menu class="menu">
+      <>
+        <Networks />
+        <ThemeToggle />
+      </>
+    </Menu>
+    <div class="networks">
+      <Networks class="hide-non-l" />
+    </div>
     <i class="separator"></i>
-    <ThemeToggle />
+    <ThemeToggle class="hide-non-l" />
   </section>
 </header>
 <style lang="scss">
@@ -45,7 +52,9 @@ const { disableInteractions = false } = Astro.props;
     position: sticky;
     z-index: 1;
     top: -1px;
+    // top: 0;
     background-color: utils.color(light);
+    height: var(--header-height);
 
     &.is-pinned {
       background-color: utils.color(light, 0.8);
@@ -81,16 +90,33 @@ const { disableInteractions = false } = Astro.props;
     &:hover {
       color: utils.text-color(main);
     }
+
+    @include utils.tablet {
+      justify-content: unset;
+    }
+  }
+
+  .networks {
+    margin-left: 2.7rem;
   }
 
   .separator {
     height: 2rem;
     margin: 0 1.5rem;
-    --border-color: #{utils.color(secondary)};
-    border-right: 2px solid var(--border-color);
+    border-right: 2px solid utils.color(secondary);
 
     @include utils.withDark() {
-      --border-color: #{utils.text-color(secondary)};
+      border-color: utils.text-color(secondary);
+    }
+
+    @include utils.tablet {
+      display: none;
+    }
+  }
+
+  .hide-non-l {
+    @include utils.tablet {
+      display: none;
     }
   }
 </style>
@@ -109,9 +135,12 @@ const { disableInteractions = false } = Astro.props;
       let observer: IntersectionObserver;
       if (header && body) {
         observer = new IntersectionObserver(
-          ([e]) => {
-            const isPinned = e.intersectionRatio < 1;
-            e.target.classList.toggle("is-pinned", isPinned);
+          ([event]) => {
+            if (!event) {
+              return;
+            }
+            const isPinned = event.intersectionRatio < 1;
+            event.target.classList.toggle("is-pinned", isPinned);
             body.classList.toggle("pinned", isPinned);
           },
           { threshold: [1] }

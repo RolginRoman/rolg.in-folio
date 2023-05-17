@@ -1,13 +1,15 @@
 ---
 interface Props {
   align?: "end" | "default";
+  class?: string;
+  disableMobile?: boolean;
 }
 
-const { align = "end" } = Astro.props;
+const { align = "end", class: classNames, disableMobile = false, ...rest } = Astro.props;
 const baseUrl = import.meta.env.SITE;
 ---
 
-<nav class:list={[{ "-end": align === "end" }]}>
+<nav class:list={[{ "-end": align === "end" }, classNames]} {...rest}>
   <ul>
     <li><a href={`${baseUrl}#about`}>About</a></li>
     <li><a href={`${baseUrl}#tech`}>Skills</a></li>
@@ -15,6 +17,21 @@ const baseUrl = import.meta.env.SITE;
     <li><a href={`${baseUrl}#contacts`}>Contacts</a></li>
   </ul>
 </nav>
+{ 
+  disableMobile ? 
+  <></> : 
+    <label for="menu-toggle"> Menu</label>
+    <input id="menu-toggle" class="menu-toggle" type="checkbox" />
+    <nav data-mobile class="m-menu">
+      <ul>
+        <li><a href={`${baseUrl}#about`}>About</a></li>
+        <li><a href={`${baseUrl}#tech`}>Skills</a></li>
+        <li><a href={`${baseUrl}#projects`}>Projects</a></li>
+        <li><a href={`${baseUrl}#contacts`}>Contacts</a></li>
+      </ul>
+      <slot />
+    </nav>
+}
 <style lang="scss">
   @use "styles.scss" as utils;
 
@@ -25,6 +42,10 @@ const baseUrl = import.meta.env.SITE;
     &.-end {
       justify-content: flex-end;
     }
+
+    @include utils.tablet {
+      display: none;
+    }
   }
 
   ul {
@@ -33,6 +54,11 @@ const baseUrl = import.meta.env.SITE;
     list-style: none;
     padding: 0;
     @include utils.font(caption, m);
+
+    @include utils.mobile {
+      flex-direction: column;
+      margin: 0;
+    }
   }
 
   li {
@@ -48,10 +74,90 @@ const baseUrl = import.meta.env.SITE;
 
     + li {
       margin-left: 3rem;
+
+      @include utils.mobile {
+        margin-left: 0;
+      }
+    }
+
+    @include utils.mobile {
+      margin-left: 0;
+      margin-bottom: 1rem;
     }
   }
 
   a {
     text-decoration: none;
   }
+
+  .hidden {
+    display: none;
+    overflow-x: scroll;
+  }
+
+  label {
+    display: none;
+    order: 3;
+    @include utils.font(caption, s);
+
+    // &,
+    // &:before,
+    // &:after {
+    //   content: "";
+    //   width: 100%;
+    //   height: 6px;
+    //   background-color: utils.color(main);
+    // }
+
+    @include utils.tablet {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    .menu-toggle:checked ~ & {
+      box-shadow: 1px 1px 0 0 utils.color(secondary);
+    }
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .m-menu {
+    display: none;
+    top: 0;
+    left: 0;
+
+    .menu-toggle:checked ~ & {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      align-items: center;
+      width: 100vw;
+      padding: 1.2rem 0;
+      box-shadow: 7px 11px 10px 0px utils.color(main, 0.3);
+      transform: translateY(var(--header-height));
+      transition: transform 5s ease-out;
+      background-color: utils.color(light);
+
+      :global(.is-pinned) & {
+        background-color: utils.color(light, 0.8);
+      }
+
+      @include utils.mediaBreakpointAfter(m) {
+        display: none;
+      }
+    }
+  }
 </style>
+
+<script>
+  // const mobileMenuToggle = document.querySelector(".menu-toggle") as HTMLInputElement;
+  // document.addEventListener("click", (event) => {
+  //   if (mobileMenuToggle && event.currentTarget !== mobileMenuToggle) {
+  //     mobileMenuToggle.checked = false;
+  //   }
+  // });
+  // mobile menu close outside
+</script>

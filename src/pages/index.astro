@@ -22,5 +22,9 @@ import Tech from "@/sections/Tech.astro";
   main {
     @include utils.contentMaxWidth();
     margin-top: 2rem;
+
+    @include utils.tablet {
+      margin-top: unset;
+    }
   }
 </style>

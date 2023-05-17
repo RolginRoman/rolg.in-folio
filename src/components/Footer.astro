@@ -12,7 +12,7 @@ import Emoji from "astro-emoji";
     <Networks />
   </section>
   <section class="menu">
-    <Menu align="default" />
+    <Menu align="default" disableMobile={true} />
     <spac class="tool">
       Crafted with&nbsp;<Emoji symbol="❤️" label="love" />&nbsp;and
       <a
@@ -29,7 +29,9 @@ import Emoji from "astro-emoji";
 
   footer {
     min-height: 15vh;
-    background-color: utils.color("light");
+    background-color: transparent; // utils.color("light");
+    display: flex;
+    flex-direction: column;
   }
 
   .content,
@@ -38,10 +40,11 @@ import Emoji from "astro-emoji";
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex: 1;
   }
 
   .menu {
-    margin-top: 0.5rem;
+    // margin-top: 0.5rem;
   }
 
   .content {
@@ -72,6 +75,12 @@ import Emoji from "astro-emoji";
       transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
     }
 
+    @include utils.tablet {
+      flex: 1;
+      justify-content: flex-end;
+      margin: 1rem 0;
+    }
+
     &:hover {
       color: utils.text-color(main);
 
@@ -84,7 +93,7 @@ import Emoji from "astro-emoji";
   [astro-icon="logos:astro"] {
     display: inline-block;
     height: 2em;
-    padding: 0 1em;
+    padding: 0 0 0 1em;
 
     & :global(path) {
       @include utils.skipIfNoMotionPrefered() {

@@ -1,8 +1,15 @@
+@use "media.scss";
+
 $contentMaxWidth: 912px;
 
 @mixin contentMaxWidth() {
   width: $contentMaxWidth;
   margin: 0 auto;
+
+  @include media.tablet {
+    width: 100%;
+    padding: 0 1rem;
+  }
 }
 
 @mixin centerHeaders {

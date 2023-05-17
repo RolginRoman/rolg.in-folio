@@ -19,9 +19,11 @@ const networks = [
     icon: "mdi:github",
   },
 ];
+
+const { class: classNames } = Astro.props;
 ---
 
-<ul>
+<ul class:list={[classNames]}>
   {
     networks.map((network) => (
       <li title={network.type}>
@@ -44,6 +46,12 @@ const networks = [
     display: flex;
     flex-direction: row;
     list-style: none;
+    padding: 0;
+
+    @include utils.tablet {
+      // flex: 1;
+      // justify-content: flex-end;
+    }
   }
 
   li {
