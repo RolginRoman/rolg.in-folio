@@ -5,26 +5,58 @@
 $_fonts: (
   heading: (
     xl: 52px 800 56px 0 24px 700 32px 0,
+    // step 0
     m: 48px 700 52px 0 24px 700 32px 0,
+    // step -1
   ),
   text: (
     l: 32px 500 42px 0 22px 500 30px 0,
+    // step -2
     m: 28px 500 38px 0 22px 500 32px 0,
+    // step -3
   ),
   caption: (
     m: 18px 400 22px 0 18px 400 22px 0,
+    // step -4
     s: 16px 400 20px 0 16px 400 20px 0,
+    // step -5
+  ),
+);
+
+$_typeScales: (
+  heading: (
+    xl: 0 800,
+    // step 0
+    m: -1 700 // step -1,,,,,,,,
+  ),
+  text: (
+    l: -2 500,
+    // step -2
+    m: -3 500,
+    // step -3,,,
+  ),
+  caption: (
+    m: -4 400,
+    // step -4
+    s: -5 400,
+    // step -5,,,
   ),
 );
 
 @mixin font($scope, $size) {
-  $font: map.get($_fonts, $scope, $size);
-
+  // $font: map.get($_fonts, $scope, $size);
   // TODO apply as css vars. init font scope's vars at :root
-  font-size: list.nth($font, 1);
+  // font-size: list.nth($font, 1);
+  // font-weight: list.nth($font, 2);
+  // line-height: list.nth($font, 3);
+  // letter-spacing: list.nth($font, 4);
+
+  $font: map.get($_typeScales, $scope, $size);
+  $fluidClampName: "--step-#{list.nth($font, 1)}";
+  font-size: var(#{$fluidClampName});
   font-weight: list.nth($font, 2);
-  line-height: list.nth($font, 3);
-  letter-spacing: list.nth($font, 4);
+  line-height: 1.3em;
+  letter-spacing: 0;
 
   // todo media query
   //   @media (max-width: 768px) {

@@ -80,7 +80,7 @@ const tech = [
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem 0 2rem;
+    padding: 3rem 0 0;
   }
 
   @include utils.centerHeaders();
@@ -102,9 +102,13 @@ const tech = [
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 5vw;
+    gap: 3em;
     @include utils.font(caption, m);
     color: utils.text-color("secondary");
+
+    @include utils.mobile {
+      gap: 1.5em;
+    }
   }
 
   li {

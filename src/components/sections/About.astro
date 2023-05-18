@@ -58,7 +58,7 @@ const cvLink = links.cv;
     row-gap: 0;
     column-gap: 32px;
     @include utils.contentMaxWidth();
-    padding: 1rem 0 2rem;
+    // padding: 1rem 0 2rem;
     height: calc(100vh - var(--header-height));
     transform: translateY(calc(var(--header-height) * -1));
 
@@ -67,8 +67,12 @@ const cvLink = links.cv;
       // grid-temlate-rows: unset;
       // grid-template-areas: "intro" "photo" "cv";
       display: flex;
-      justify-content: space-around;
+      justify-content: space-evenly;
       transform: none;
+    }
+
+    @include utils.mobile {
+      // display: block;
     }
   }
 
@@ -79,7 +83,7 @@ const cvLink = links.cv;
   }
 
   h2 {
-    margin: 1rem 0 0;
+    margin: 0.3em 0 0;
     @include utils.font(heading, xl);
     color: utils.text-color(secondary);
   }
@@ -113,8 +117,9 @@ const cvLink = links.cv;
       #{utils.color(main)} 30%,
       #{utils.color(accent)} 60%
     );
-    width: 256px;
-    height: 256px;
+    width: clamp(180px, 60vw, 256px);
+    min-width: clamp(180px, 60vw, 256px);
+    height: clamp(180px, 60vw, 256px);
     border-radius: 50%;
   }
 
@@ -123,6 +128,8 @@ const cvLink = links.cv;
     object-fit: cover;
     object-position: center 25%;
     aspect-ratio: 1/1;
+    width: 95%;
+    height: 95%;
   }
 
   .cv {
