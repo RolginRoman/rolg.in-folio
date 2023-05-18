@@ -42,7 +42,7 @@ type FluidDesignSystemCSSInput = {
   customPairs: { [stepName: string]: ClampedValue };
 };
 
-const systemConfigRaw = [320, 16, "minor-third", 1400, 32, "golden-ratio"] as const;
+const systemConfigRaw = [320, 34, "minor-third", 1400, 52, "major-third"] as const;
 
 const config = {
   minViewport: {
@@ -55,7 +55,7 @@ const config = {
     fontSize: systemConfigRaw[4],
     typeScale: systemConfigRaw[5],
   },
-  typeScaleSteps: [-2, -1, 0, 1, 2, 3, 4, 5],
+  typeScaleSteps: [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5],
   spaceSteps: {
     "-3XS": 0.25,
     "-2XS": 0.5,

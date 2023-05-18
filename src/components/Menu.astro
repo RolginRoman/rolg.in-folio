@@ -17,20 +17,32 @@ const baseUrl = import.meta.env.SITE;
     <li><a href={`${baseUrl}#contacts`}>Contacts</a></li>
   </ul>
 </nav>
-{ 
-  disableMobile ? 
-  <></> : 
-    <label for="menu-toggle"> Menu</label>
-    <input id="menu-toggle" class="menu-toggle" type="checkbox" />
-    <nav data-mobile class="m-menu">
-      <ul>
-        <li><a href={`${baseUrl}#about`}>About</a></li>
-        <li><a href={`${baseUrl}#tech`}>Skills</a></li>
-        <li><a href={`${baseUrl}#projects`}>Projects</a></li>
-        <li><a href={`${baseUrl}#contacts`}>Contacts</a></li>
-      </ul>
-      <slot />
-    </nav>
+{
+  disableMobile ? (
+    <Fragment />
+  ) : (
+    <>
+      <label for="menu-toggle"> Menu</label>
+      <input id="menu-toggle" class="menu-toggle" type="checkbox" />
+      <nav data-mobile class="m-menu">
+        <ul class="m-links">
+          <li>
+            <a href={`${baseUrl}#about`}>About</a>
+          </li>
+          <li>
+            <a href={`${baseUrl}#tech`}>Skills</a>
+          </li>
+          <li>
+            <a href={`${baseUrl}#projects`}>Projects</a>
+          </li>
+          <li>
+            <a href={`${baseUrl}#contacts`}>Contacts</a>
+          </li>
+        </ul>
+        <slot />
+      </nav>
+    </>
+  )
 }
 <style lang="scss">
   @use "styles.scss" as utils;
@@ -73,7 +85,7 @@ const baseUrl = import.meta.env.SITE;
     }
 
     + li {
-      margin-left: 3rem;
+      margin-left: 2.5rem;
 
       @include utils.mobile {
         margin-left: 0;
@@ -82,7 +94,7 @@ const baseUrl = import.meta.env.SITE;
 
     @include utils.mobile {
       margin-left: 0;
-      margin-bottom: 1rem;
+      margin-bottom: 1em;
     }
   }
 
@@ -133,16 +145,20 @@ const baseUrl = import.meta.env.SITE;
       display: flex;
       flex-direction: column;
       position: absolute;
-      align-items: center;
-      width: 100vw;
-      padding: 1.2rem 0;
+      align-items: flex-end;
+      @include utils.contentMaxWidth();
       box-shadow: 7px 11px 10px 0px utils.color(main, 0.3);
       transform: translateY(var(--header-height));
       transition: transform 5s ease-out;
-      background-color: utils.color(light);
+      // background: linear-gradient(-90deg, utils.color(light) 60%, transparent);
+      background: utils.color(light);
+
+      @include utils.tablet {
+        padding-bottom: 1.2em;
+      }
 
       :global(.is-pinned) & {
-        background-color: utils.color(light, 0.8);
+        background: utils.color(light, 0.8);
       }
 
       @include utils.mediaBreakpointAfter(m) {
@@ -150,14 +166,22 @@ const baseUrl = import.meta.env.SITE;
       }
     }
   }
+
+  .m-links {
+    align-items: flex-end;
+  }
 </style>
 
 <script>
-  // const mobileMenuToggle = document.querySelector(".menu-toggle") as HTMLInputElement;
-  // document.addEventListener("click", (event) => {
-  //   if (mobileMenuToggle && event.currentTarget !== mobileMenuToggle) {
-  //     mobileMenuToggle.checked = false;
-  //   }
-  // });
+  const mobileMenuToggle = document.querySelector(".menu-toggle") as HTMLInputElement;
+  mobileMenuToggle.addEventListener("change", () => {
+    if (mobileMenuToggle.checked) {
+      document.addEventListener("click", (event) => {
+        if (mobileMenuToggle && event.target !== mobileMenuToggle) {
+          mobileMenuToggle.checked = false;
+        }
+      });
+    }
+  });
   // mobile menu close outside
 </script>
