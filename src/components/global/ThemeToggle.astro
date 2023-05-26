@@ -25,7 +25,7 @@ const { class: classNames } = Astro.props;
     --label-height: 1rem;
 
     @media (hover: none) {
-      --label-width: 3rem;
+      --label-width: 3.6rem;
       --label-height: 1.5rem;
     }
 
@@ -130,6 +130,6 @@ const { class: classNames } = Astro.props;
 <script>
   import "@/scripts/theme-toggle.service.ts";
   window.addEventListener("load", () => {
-    setTimeout(() => document.querySelector(".toggleLabel")?.classList.add("anim"));
+    setTimeout(() => document.querySelectorAll(".toggleLabel").forEach((toggle) => toggle.classList.add("anim")));
   });
 </script>

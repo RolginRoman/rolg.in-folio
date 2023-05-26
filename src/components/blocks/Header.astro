@@ -2,7 +2,7 @@
 import Logo from "./Logo.astro";
 import Networks from "./Networks.astro";
 import Menu from "./Menu.astro";
-import ThemeToggle from "./ThemeToggle.astro";
+import ThemeToggle from "../global/ThemeToggle.astro";
 
 interface Props {
   disableInteractions?: boolean;
@@ -17,7 +17,7 @@ const { disableInteractions = false } = Astro.props;
     <Menu class="menu">
       <>
         <Networks class="m-networks" />
-        <ThemeToggle class="m-networks"/>
+        <ThemeToggle class="m-networks" />
       </>
     </Menu>
     <div class="networks">
@@ -98,6 +98,10 @@ const { disableInteractions = false } = Astro.props;
 
   .networks {
     margin-left: 2.7rem;
+
+    @include utils.tablet {
+      display: none;
+    }
   }
 
   .separator {

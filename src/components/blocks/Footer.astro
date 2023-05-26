@@ -13,15 +13,16 @@ import Emoji from "astro-emoji";
   </section>
   <section class="menu">
     <Menu align="default" disableMobile={true} />
-    <spac class="tool">
+    <span class="tool">
       Crafted by&nbsp;<Emoji symbol="🧑🏻‍💻" label="me" />&nbsp;and
       <a
         target="_blank"
         rel="noopener noreferrer"
+        class="astro-logo-link"
         href="https://astro.build"
         aria-label="Link to Astro framework website"><Icon name="logos:astro" aria-label="Astro framework" /></a
       >
-    </spac>
+    </span>
   </section>
 </footer>
 <style lang="scss">
@@ -44,7 +45,6 @@ import Emoji from "astro-emoji";
   }
 
   .menu {
-    // margin-top: 0.5rem;
   }
 
   .content {
@@ -90,10 +90,15 @@ import Emoji from "astro-emoji";
     }
   }
 
+  .astro-logo-link {
+    height: 2em;
+    margin: 0 0 0 0.8em;
+    padding: 0.2em;
+  }
+
   [astro-icon="logos:astro"] {
     display: inline-block;
-    height: 2em;
-    padding: 0 0 0 1em;
+    height: 100%;
 
     & :global(path) {
       @include utils.skipIfNoMotionPrefered() {

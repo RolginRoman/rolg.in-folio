@@ -11,7 +11,7 @@ const { class: classNames, ...rest } = Astro.props;
   <ul>
     <li>
       <a
-        href={"mailto:" + links.mail + "?subject=Hi%20Roman%2C%20Happy%20to%20reach%20you!"}
+        href={"mailto:" + links.mail + "?subject=Hi%20Roman%2C%20I%20have%20a%20question."}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -30,22 +30,26 @@ const { class: classNames, ...rest } = Astro.props;
 <style lang="scss">
   @use "styles.scss" as utils;
   @include utils.centerHeaders();
+
   .contacts {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem 0 0;
+    padding: utils.space(m) 0 utils.space(xs);
   }
+
   h2 {
-    margin: 1rem 0 0;
+    margin: 0;
     @include utils.font(heading, m);
     color: utils.text-color("main");
   }
 
   h3 {
+    margin: utils.space(xs) 0 utils.space(2xs);
     @include utils.font(text, l);
     color: utils.text-color("main");
   }
+
   ul {
     list-style: none;
     padding: 0;
@@ -53,8 +57,9 @@ const { class: classNames, ...rest } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: utils.space(2xs);
   }
+
   li {
     @include utils.font(text, m);
     color: utils.text-color(secondary);
@@ -75,7 +80,7 @@ const { class: classNames, ...rest } = Astro.props;
         linear-gradient(45deg, #{utils.color("accent")}, #{utils.color("secondary")} 30%)
       );
       border-radius: 8px;
-      padding: 12px 8px;
+      padding: 0.75em 0.5em;
 
       @include utils.skipIfNoMotionPrefered() {
         transition-property: transform, box-shadow;

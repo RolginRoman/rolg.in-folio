@@ -1,16 +1,15 @@
 ---
 import "../styles/global.scss";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import ThemeInjector from "src/components/ThemeInjector.astro";
-import FluidDesignSystem from "src/components/FluidDesignSystem.astro";
+import FluidDesignSystem from "@/global/FluidDesignSystem.astro";
+import ThemeInjector from "@/global/ThemeInjector.astro";
+import Header from "@/blocks/Header.astro";
+import Footer from "@/blocks/Footer.astro";
 
 export interface Props {
-  title: string;
   disableInteractions?: boolean;
 }
 
-const { title, disableInteractions = false } = Astro.props;
+const { disableInteractions = false } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -24,8 +23,11 @@ const { title, disableInteractions = false } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <ThemeInjector />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <title>{title}</title>
+    <!-- <title>{title}</title> -->
+    <!-- <meta name="description" content={description} /> -->
+    <slot name="seo-header" />
   </head>
+
   <body>
     <Header disableInteractions={disableInteractions} />
     <slot />
@@ -43,14 +45,13 @@ const { title, disableInteractions = false } = Astro.props;
       }
 
       body {
-        --header-height: 78px;
+        --header-height: 62px;
 
-        overflow-x: hidden; //temp
+        overflow-x: hidden;
 
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        // grid-template-rows: var(--header-height) 1fr 15vh;
         background-color: color(light);
 
         & > *:nth-child(2) {
