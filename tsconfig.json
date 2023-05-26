@@ -7,6 +7,8 @@
     "noImplicitAny": true,
     "paths": {
       "@/sections/*": ["src/components/sections/*"],
+      "@/blocks/*": ["src/components/blocks/*"],
+      "@/global/*": ["src/components/global/*"],
       "@/layouts/*": ["src/layouts/*"],
       "@/scripts/*": ["src/scripts/*"]
     }

@@ -5,9 +5,39 @@ import About from "@/sections/About.astro";
 import Contacts from "@/sections/Contacts.astro";
 import Projects from "@/sections/Projects.astro";
 import Tech from "@/sections/Tech.astro";
+import { SEO } from "astro-seo";
 ---
 
-<Layout title="I'm Rolgin Roman 🚀">
+<Layout>
+  <SEO
+    slot="seo-header"
+    title="I'm Rolgin Roman 🚀"
+    description="Rolgin Roman's personal website with social media links and several examples of work"
+    openGraph={{
+      basic: {
+        title: "I'm Rolgin Roman 🚀",
+        type: "website",
+        image: "https://user-images.githubusercontent.com/5182256/131216951-8f74f425-f775-463d-a11b-0e01ad9fce8d.png",
+      },
+    }}
+    twitter={{
+      creator: "@rolginroman",
+    }}
+    extend={{
+      // extending the default link tags
+      link: [{ rel: "icon", href: "/favicon.svg" }],
+      // extending the default meta tags
+      meta: [
+        {
+          name: "twitter:image",
+          content:
+            "https://user-images.githubusercontent.com/5182256/131216951-8f74f425-f775-463d-a11b-0e01ad9fce8d.png",
+        },
+        { name: "twitter:title", content: "I'm Rolgin Roman 🚀" },
+        { name: "twitter:description", content: "Dev" },
+      ],
+    }}
+  />
   <main>
     <About id="about" />
     <Tech id="tech" />

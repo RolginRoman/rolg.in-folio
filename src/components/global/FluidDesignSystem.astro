@@ -36,7 +36,7 @@ type FluidDesignSystemConfig = {
 type ClampedValue = { clamp: string; min: number; max: number };
 
 type FluidDesignSystemCSSInput = {
-  typeScale: { [stepName: string]: ClampedValue };
+  typeScale: { [stepName: number]: ClampedValue };
   spaceSteps: { [stepName: string]: ClampedValue };
   spacePairs: { [stepName: string]: ClampedValue };
   customPairs: { [stepName: string]: ClampedValue };
@@ -55,7 +55,7 @@ const config = {
     fontSize: systemConfigRaw[4],
     typeScale: systemConfigRaw[5],
   },
-  typeScaleSteps: [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5],
+  typeScaleSteps: [-5, 5],
   spaceSteps: {
     "-3XS": 0.25,
     "-2XS": 0.5,
@@ -104,7 +104,7 @@ function clampBuilder(minWidthPx: number, maxWidthPx: number, minSizePx: number,
   return `clamp(${min}, calc(${val}), ${max})`;
 }
 
-function generateCSS(system: FluidDesignSystemCSSInput) {
+function generateCSS(system: FluidDesignSystemCSSInput, injectSelector = "html") {
   let css = "";
 
   const { typeScale, spaceSteps, spacePairs, customPairs } = system;
@@ -126,7 +126,7 @@ function generateCSS(system: FluidDesignSystemCSSInput) {
   }
 
   return `
-    :where(html) {
+    :where(${injectSelector}) {
       ${css}
     }
   `;
@@ -135,7 +135,7 @@ function generateCSS(system: FluidDesignSystemCSSInput) {
 function buildFluidDesignSystem(opts: FluidDesignSystemConfig): FluidDesignSystemCSSInput {
   const { minViewport, maxViewport, typeScaleSteps, spaceSteps, spacePairs, customPairs } = opts;
 
-  const system = {
+  const system: FluidDesignSystemCSSInput = {
     typeScale: {},
     spaceSteps: {},
     spacePairs: {},
@@ -151,7 +151,6 @@ function buildFluidDesignSystem(opts: FluidDesignSystemConfig): FluidDesignSyste
         const valueMin = round(minViewport.fontSize * Math.pow(scaleSteps[minViewport.typeScale], i));
         const valueMax = round(maxViewport.fontSize * Math.pow(scaleSteps[maxViewport.typeScale], i));
 
-        // @ts-expect-error no index signatures
         system.typeScale[i] = {
           min: valueMin,
           max: valueMax,
@@ -163,27 +162,30 @@ function buildFluidDesignSystem(opts: FluidDesignSystemConfig): FluidDesignSyste
     }
   }
 
-  for (const step of Object.keys(spaceSteps)) {
-    const stepValue = spaceSteps[step];
-    // @ts-expect-error no index signatures
-    const valueMin = round(system.typeScale[0].min * stepValue);
-    // @ts-expect-error no index signatures
-    const valueMax = round(system.typeScale[0].max * stepValue);
-    // @ts-expect-error no index signatures
-    system.spaceSteps[step] = {
-      min: valueMin,
-      max: valueMax,
-      clamp: clampBuilder(minViewport.width, maxViewport.width, valueMin, valueMax),
-    };
+  if (system.typeScale[0]) {
+    for (const step of Object.keys(spaceSteps)) {
+      const stepValue = spaceSteps[step];
+      if (!stepValue) {
+        continue;
+      }
+      const valueMin = round(system.typeScale[0].min * stepValue);
+      const valueMax = round(system.typeScale[0].max * stepValue);
+      system.spaceSteps[step] = {
+        min: valueMin,
+        max: valueMax,
+        clamp: clampBuilder(minViewport.width, maxViewport.width, valueMin, valueMax),
+      };
+    }
   }
 
   for (const [min, max] of Object.entries(spacePairs)) {
-    // @ts-expect-error no index signatures
-    const valueMin = system.spaceSteps[min].min;
-    // @ts-expect-error no index signatures
-    const valueMax = system.spaceSteps[max].max;
-
-    // @ts-expect-error no index signatures
+    const minSpaceStep = system.spaceSteps[min];
+    const maxSpaceStep = system.spaceSteps[max];
+    if (!minSpaceStep || !maxSpaceStep) {
+      throw new Error(`space steps isn't available for spacePair: ${min}, ${max}`);
+    }
+    const valueMin = minSpaceStep.min;
+    const valueMax = maxSpaceStep.max;
     system.spacePairs[`${min}${max}`] = {
       min: valueMin,
       max: valueMax,
@@ -192,12 +194,13 @@ function buildFluidDesignSystem(opts: FluidDesignSystemConfig): FluidDesignSyste
   }
 
   for (const [min, max] of Object.entries(customPairs)) {
-    // @ts-expect-error no index signatures
-    const valueMin = system.spaceSteps[min].min;
-    // @ts-expect-error no index signatures
-    const valueMax = system.spaceSteps[max].max;
-
-    // @ts-expect-error no index signatures
+    const minSpaceStep = system.spaceSteps[min];
+    const maxSpaceStep = system.spaceSteps[max];
+    if (!minSpaceStep || !maxSpaceStep) {
+      throw new Error(`space steps isn't available for customPair: ${min}, ${max}`);
+    }
+    const valueMin = minSpaceStep.min;
+    const valueMax = maxSpaceStep.max;
     system.customPairs[`${min}${max}`] = {
       min: valueMin,
       max: valueMax,
@@ -209,6 +212,8 @@ function buildFluidDesignSystem(opts: FluidDesignSystemConfig): FluidDesignSyste
 }
 
 const fluidDesignSystem: FluidDesignSystemCSSInput = buildFluidDesignSystem(config);
+
+const { injectSelector = "html" } = Astro.props;
 ---
 
-<style set:html={generateCSS(fluidDesignSystem)}></style>
+<style set:html={generateCSS(fluidDesignSystem, injectSelector)}></style>

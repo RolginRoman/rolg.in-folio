@@ -12,7 +12,8 @@ const cvLink = links.cv;
   <section class="intro">
     <h1>
       Hi <Emoji symbol="👋" label="Hi" />, <br />My name is <br /><span class="text-gradient">Roman Rolgin</span><br />
-    </h1><h2>I build web apps</h2>
+    </h1>
+    <h2>I build web apps</h2>
   </section>
   <section class="photo">
     <div class="border">
@@ -56,23 +57,18 @@ const cvLink = links.cv;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr 3em;
     row-gap: 0;
-    column-gap: 32px;
+    column-gap: utils.space(s);
     @include utils.contentMaxWidth();
-    // padding: 1rem 0 2rem;
     height: calc(100vh - var(--header-height));
     transform: translateY(calc(var(--header-height) * -1));
 
     @include utils.tablet {
-      // grid-template-columns: 1fr;
-      // grid-temlate-rows: unset;
-      // grid-template-areas: "intro" "photo" "cv";
       display: flex;
       justify-content: space-evenly;
       transform: none;
     }
 
     @include utils.mobile {
-      // display: block;
     }
   }
 
@@ -136,12 +132,12 @@ const cvLink = links.cv;
     display: flex;
     align-items: flex-end;
     width: max-content;
-    gap: 8px;
+    gap: utils.space(3xs);
     padding: 0.7em;
     color: utils.text-color(secondary);
     @include utils.font(caption, m);
     line-height: 20px;
-    background-color: transparent; // utils.color(light);
+    background-color: transparent;
     box-shadow: 0 1px 0px 0 utils.color(dark);
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
@@ -153,6 +149,7 @@ const cvLink = links.cv;
     &:hover {
       color: utils.text-color(secondary-hover);
       fill: utils.color(accent);
+
       @include utils.skipIfNoMotionPrefered() {
         box-shadow: 0 1px 1px 0 utils.color(dark);
         border-radius: 12px;

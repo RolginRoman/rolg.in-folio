@@ -33,16 +33,70 @@ const tech = [
     iconName: "logos:sass",
   },
   {
-    name: "Git",
-    iconName: "logos:git-icon",
-  },
-  {
     name: "Docker",
     iconName: "logos:docker-icon",
   },
   {
     name: "Node.js",
     iconName: "logos:nodejs-icon",
+  },
+  {
+    group: [
+      {
+        name: "Git",
+        iconName: "logos:git-icon",
+      },
+      {
+        name: "GitHub",
+        iconName: "mdi:github",
+      },
+      {
+        name: "GitLab",
+        iconName: "logos:gitlab",
+      },
+    ],
+  },
+  {
+    group: [
+      {
+        name: "redux",
+        iconName: "logos:redux",
+      },
+      {
+        name: "ngrx",
+        iconName: "file-icons:ngrx",
+      },
+      {
+        name: "nextjs",
+        iconName: "logos:nextjs",
+        fill: "accent",
+      },
+      {
+        name: "react",
+        iconName: "logos:react",
+      },
+    ],
+  },
+  {
+    group: [
+      {
+        name: "nestjs",
+        iconName: "logos:nestjs",
+      },
+      {
+        name: "jest",
+        iconName: "logos:jest",
+      },
+      {
+        name: "sentry",
+        iconName: "logos:sentry-icon",
+        fill: "accent",
+      },
+      {
+        name: "storybook",
+        iconName: "logos:storybook-icon",
+      },
+    ],
   },
 ];
 ---
@@ -52,12 +106,30 @@ const tech = [
   <h3>Technologies I've been working with recently</h3>
   <ul>
     {
-      tech.map((item) => (
-        <li>
-          <Icon name={item.iconName} aria-label={item.name} width="120" height="120" />
-          <span class="tech-name">{item.name}</span>
-        </li>
-      ))
+      tech.map((item) =>
+        !item.group ? (
+          <li>
+            <Icon name={item.iconName} aria-label={item.name} width="120" height="120" />
+            <span class="tech-name">{item.name}</span>
+          </li>
+        ) : (
+          <li>
+            <div class="group">
+              {item.group.map((groupItem) => (
+                <div class="group-icon" data-name={groupItem.name}>
+                  <Icon
+                    name={groupItem.iconName}
+                    class:list={[groupItem.fill ? groupItem.fill : undefined]}
+                    aria-label={groupItem.name}
+                    height="100%"
+                  />
+                </div>
+              ))}
+            </div>
+            <span class="tech-name" />
+          </li>
+        )
+      )
     }
   </ul>
 </section>
@@ -80,34 +152,35 @@ const tech = [
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem 0 0;
+    padding: utils.space(m) 0 0;
   }
 
   @include utils.centerHeaders();
 
   h2 {
-    margin: 1rem 0 0;
+    margin: 0 0 utils.space(2xs);
     @include utils.font(heading, m);
     color: utils.text-color("main");
   }
 
   h3 {
     @include utils.font(text, m);
+    margin: utils.space(3xs) 0;
     color: utils.text-color("main");
   }
 
   ul {
-    list-style: none;
-    margin: 1.4rem 0;
-    padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 3em;
+    gap: utils.space(xs);
+    margin: utils.space(xs) 0;
+    padding: 0;
+    list-style: none;
     @include utils.font(caption, m);
     color: utils.text-color("secondary");
 
     @include utils.mobile {
-      gap: 1.5em;
+      gap: utils.space(2xs);
     }
   }
 
@@ -115,9 +188,67 @@ const tech = [
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    width: 120px;
+    height: 120px;
+    padding: 1em;
+    background: linear-gradient(45deg, utils.color(tertiary, 0.3), utils.color(tertiary, 0.1));
+    border-radius: 16px;
+    transition: transform 0.2s cubic-bezier(0.06, 0.11, 0, 0.36);
+
+    & .accent {
+      fill: utils.color(accent);
+
+      & > :global(path) {
+        fill: utils.color(accent);
+      }
+    }
+
+    & .group-icon {
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      [astro-icon] {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    }
+
+    @mixin activeGroupOnInteraction {
+      @include utils.skipIfNoMotionPrefered {
+        transform: translate(0, 10%) scale(1.5);
+      }
+
+      & .group-icon {
+        &:after {
+          content: attr(data-name);
+          color: utils.text-color(secondary);
+          font-size: 8px;
+          line-height: 8px;
+          position: absolute;
+          bottom: -1.3em;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+
+    @media (hover: none) {
+      &:focus-within {
+        @include activeGroupOnInteraction();
+      }
+    }
 
     &:hover {
-      // box-shadow: #{utils.color("tertiary")} 0px 0px 0px 12px;
+      @include activeGroupOnInteraction();
     }
   }
 
@@ -136,7 +267,7 @@ const tech = [
   .tech-name {
     opacity: 0;
     display: inline-block;
-    margin-top: 1rem;
+    margin-top: 0.8em;
     cursor: default;
 
     @include utils.onlyIfNoMotionPrefered {

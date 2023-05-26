@@ -1,11 +1,40 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Icon from "astro-icon";
+import { SEO } from "astro-seo";
 
 const mainPage = import.meta.env.SITE; // TODO correct env local/prod
 ---
 
-<Layout title="Oops, this's an unpleasant place" disableInteractions={true}>
+<Layout disableInteractions={true}>
+  <SEO
+    slot="seo-header"
+    title="Oops, this's an unpleasant place"
+    description="There was a typo maybe? Not found page"
+    openGraph={{
+      basic: {
+        title: "Oops, this's an unpleasant place",
+        type: "website",
+        image: `${mainPage}/og-image.png`,
+      },
+    }}
+    twitter={{
+      creator: "@rolginroman",
+    }}
+    extend={{
+      // extending the default link tags
+      link: [{ rel: "icon", href: "/favicon.svg" }],
+      // extending the default meta tags
+      meta: [
+        {
+          name: "twitter:image",
+          content: `${mainPage}/og-image.png`,
+        },
+        { name: "twitter:title", content: "Oops, this's an unpleasant place" },
+        { name: "twitter:description", content: "There was a typo maybe? Not found page" },
+      ],
+    }}
+  />
   <section>
     <h1>404</h1>
     <h2>Whoops, we've been lost for some time</h2>
@@ -29,7 +58,8 @@ const mainPage = import.meta.env.SITE; // TODO correct env local/prod
 
   h1 {
     text-align: center;
-    font-size: 16em;
+    // font-size: 16em;
+    @include utils.font(heading, 5xl);
     color: utils.text-color(main);
     margin: 0.1em 0;
   }

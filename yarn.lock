@@ -77,6 +77,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@astrojs/sitemap@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "@astrojs/sitemap@npm:1.3.1"
+  dependencies:
+    sitemap: ^7.1.1
+    zod: ^3.17.3
+  checksum: 105ec8a85ecbce47e239291fcdc1999cb12fd39fc7940c3969619251613e60a3c22f11fe56a7eb3ac82ed884db149d670e889be124ae98a71803ec41edcf8f4d
+  languageName: node
+  linkType: hard
+
 "@astrojs/telemetry@npm:^2.1.1":
   version: 2.1.1
   resolution: "@astrojs/telemetry@npm:2.1.1"
@@ -1046,6 +1056,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:*":
+  version: 20.2.1
+  resolution: "@types/node@npm:20.2.1"
+  checksum: ed774afa6e9b4ad7868ed0182a8ca40ad0dd54815a70d3051b23fa850f3bca6bea4d0cb55e1fc769666786ac2cc4c1b37aeade313cb4c4634133f18ebcded496
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^17.0.5":
+  version: 17.0.45
+  resolution: "@types/node@npm:17.0.45"
+  checksum: aa04366b9103b7d6cfd6b2ef64182e0eaa7d4462c3f817618486ea0422984c51fc69fd0d436eae6c9e696ddfdbec9ccaa27a917f7c2e8c75c5d57827fe3d95e8
+  languageName: node
+  linkType: hard
+
 "@types/parse5@npm:^6.0.0":
   version: 6.0.3
   resolution: "@types/parse5@npm:6.0.3"
@@ -1057,6 +1081,15 @@ __metadata:
   version: 1.20.2
   resolution: "@types/resolve@npm:1.20.2"
   checksum: 61c2cad2499ffc8eab36e3b773945d337d848d3ac6b7b0a87c805ba814bc838ef2f262fc0f109bfd8d2e0898ff8bd80ad1025f9ff64f1f71d3d4294c9f14e5f6
+  languageName: node
+  linkType: hard
+
+"@types/sax@npm:^1.2.1":
+  version: 1.2.4
+  resolution: "@types/sax@npm:1.2.4"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2aa50cbf1d1f0cf8541ef1787f94c7442e58e63900afd3b45c354e4140ed5efc5cf26fca8eb9df9970a74c7ea582293ae2083271bd046dedf4c3cc2689a40892
   languageName: node
   linkType: hard
 
@@ -1415,35 +1448,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"app@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "app@workspace:."
-  dependencies:
-    "@fontsource/inter": ^4.5.15
-    "@typescript-eslint/eslint-plugin": ^5.59.5
-    "@typescript-eslint/parser": ^5.59.2
-    "@vitejs/plugin-basic-ssl": ^1.0.1
-    astro: ^2.4.2
-    astro-critters: ^1.1.34
-    astro-emoji: ^1.2.0
-    astro-icon: ^0.8.0
-    astro-purgecss: ^2.0.1
-    autoprefixer: ^10.4.14
-    chokidar-cli: ^3.0.0
-    cssnano: ^6.0.1
-    eslint: ^8.40.0
-    eslint-plugin-astro: ^0.27.0
-    eslint-plugin-jsx-a11y: ^6.7.1
-    eslint-plugin-react: ^7.32.2
-    normalize.css: ^8.0.1
-    postcss: ^8.4.23
-    prettier: ^2.8.8
-    prettier-plugin-astro: ^0.8.0
-    sass: ^1.62.1
-    typescript: ^5.0.4
-  languageName: unknown
-  linkType: soft
-
 "aproba@npm:^1.0.3 || ^2.0.0":
   version: 2.0.0
   resolution: "aproba@npm:2.0.0"
@@ -1458,6 +1462,13 @@ __metadata:
     delegates: ^1.0.0
     readable-stream: ^3.6.0
   checksum: 52590c24860fa7173bedeb69a4c05fb573473e860197f618b9a28432ee4379049336727ae3a1f9c4cb083114601c1140cee578376164d0e651217a9843f9fe83
+  languageName: node
+  linkType: hard
+
+"arg@npm:^5.0.0":
+  version: 5.0.2
+  resolution: "arg@npm:5.0.2"
+  checksum: 6c69ada1a9943d332d9e5382393e897c500908d91d5cb735a01120d5f71daf1b339b7b8980cbeaba8fd1afc68e658a739746179e4315a26e8a28951ff9930078
   languageName: node
   linkType: hard
 
@@ -1609,6 +1620,13 @@ __metadata:
   peerDependencies:
     astro: ^2.0.0
   checksum: 37c9f993231ffaf29ef362f7f97edb797009528de2d110a857c224c22ea619b56281c149c93a0249bb055b8049874a78dcf029110ecc718427322473108368a4
+  languageName: node
+  linkType: hard
+
+"astro-seo@npm:^0.7.2":
+  version: 0.7.2
+  resolution: "astro-seo@npm:0.7.2"
+  checksum: 263e90927748f656061f033eccbec0a5578f621e10e0b8bd26e7cd747fe2fe009799d394b38a3a76b50c813cfa8a635136336f03f48c0cddaad3a179d17d6b9a
   languageName: node
   linkType: hard
 
@@ -6697,6 +6715,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rolg.in-folio@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "rolg.in-folio@workspace:."
+  dependencies:
+    "@astrojs/sitemap": ^1.3.1
+    "@fontsource/inter": ^4.5.15
+    "@typescript-eslint/eslint-plugin": ^5.59.5
+    "@typescript-eslint/parser": ^5.59.2
+    "@vitejs/plugin-basic-ssl": ^1.0.1
+    astro: ^2.4.2
+    astro-critters: ^1.1.34
+    astro-emoji: ^1.2.0
+    astro-icon: ^0.8.0
+    astro-purgecss: ^2.0.1
+    astro-seo: ^0.7.2
+    autoprefixer: ^10.4.14
+    chokidar-cli: ^3.0.0
+    cssnano: ^6.0.1
+    eslint: ^8.40.0
+    eslint-plugin-astro: ^0.27.0
+    eslint-plugin-jsx-a11y: ^6.7.1
+    eslint-plugin-react: ^7.32.2
+    normalize.css: ^8.0.1
+    postcss: ^8.4.23
+    prettier: ^2.8.8
+    prettier-plugin-astro: ^0.8.0
+    sass: ^1.62.1
+    typescript: ^5.0.4
+    vite: ^4.3.9
+  languageName: unknown
+  linkType: soft
+
 "rollup@npm:^3.21.0":
   version: 3.21.5
   resolution: "rollup@npm:3.21.5"
@@ -6789,6 +6839,13 @@ __metadata:
   bin:
     sass: sass.js
   checksum: 1b1b3584b38a63dd94156b65f13b90e3f84b170a38c3d5e3fa578b7a32a37aeb349b4926b0eaf9448d48e955e86b1ee01b13993f19611dad8068af07a607c13b
+  languageName: node
+  linkType: hard
+
+"sax@npm:^1.2.4":
+  version: 1.2.4
+  resolution: "sax@npm:1.2.4"
+  checksum: d3df7d32b897a2c2f28e941f732c71ba90e27c24f62ee918bd4d9a8cfb3553f2f81e5493c7f0be94a11c1911b643a9108f231dd6f60df3fa9586b5d2e3e9e1fe
   languageName: node
   linkType: hard
 
@@ -6886,6 +6943,20 @@ __metadata:
   version: 1.0.5
   resolution: "sisteransi@npm:1.0.5"
   checksum: aba6438f46d2bfcef94cf112c835ab395172c75f67453fe05c340c770d3c402363018ae1ab4172a1026a90c47eaccf3af7b6ff6fa749a680c2929bd7fa2b37a4
+  languageName: node
+  linkType: hard
+
+"sitemap@npm:^7.1.1":
+  version: 7.1.1
+  resolution: "sitemap@npm:7.1.1"
+  dependencies:
+    "@types/node": ^17.0.5
+    "@types/sax": ^1.2.1
+    arg: ^5.0.0
+    sax: ^1.2.4
+  bin:
+    sitemap: dist/cli.js
+  checksum: 87a6d21b0d4a33b8c611d3bb8543d02b813c0ebfce014213ef31849b5c1439005644f19ad1593ec89815f6101355f468c9a02c251d09aa03f6fddd17e23c4be4
   languageName: node
   linkType: hard
 
@@ -7681,6 +7752,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vite@npm:^4.3.9":
+  version: 4.3.9
+  resolution: "vite@npm:4.3.9"
+  dependencies:
+    esbuild: ^0.17.5
+    fsevents: ~2.3.2
+    postcss: ^8.4.23
+    rollup: ^3.21.0
+  peerDependencies:
+    "@types/node": ">= 14"
+    less: "*"
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 8c45a516278d1e0425fac00c0877336790f71484a851a318346a70e0d2aef9f3b9651deb2f9f002c791ceb920eda7d6a3cda753bdefd657321c99f448b02dd25
+  languageName: node
+  linkType: hard
+
 "vitefu@npm:^0.2.4":
   version: 0.2.4
   resolution: "vitefu@npm:0.2.4"
@@ -8001,7 +8109,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.20.6":
+"zod@npm:^3.17.3, zod@npm:^3.20.6":
   version: 3.21.4
   resolution: "zod@npm:3.21.4"
   checksum: f185ba87342ff16f7a06686767c2b2a7af41110c7edf7c1974095d8db7a73792696bcb4a00853de0d2edeb34a5b2ea6a55871bc864227dace682a0a28de33e1f

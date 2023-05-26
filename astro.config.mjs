@@ -4,12 +4,9 @@ import { resolve } from "path";
 import purgecss from "astro-purgecss";
 import critters from "astro-critters";
 import basicSsl from "@vitejs/plugin-basic-ssl";
+import sitemap from "@astrojs/sitemap";
 import { esbuildInliner } from "./tools/vite-plugins/esbuild-inliner.mjs";
-
-// TODO
-// sitemap
-// seo
-// opengraph
+import { robotsSitemap } from "./tools/vite-plugins/robots-sitemap.mjs";
 
 const env = loadEnv(process.env.MODE, resolve(process.cwd(), "environment"), "");
 const { R_BASE_URL, R_HOSTNAME, SSL } = env;
@@ -20,12 +17,18 @@ export default defineConfig({
   base: R_BASE_URL,
   output: "static",
   integrations: [
-    // purgecss(),
-    // critters({
-    // critters: {
-    // publicPath: R_BASE_URL,
-    // },
-    // }),
+    sitemap({
+      lastmod: new Date(),
+      changefreq: "monthly",
+    }),
+    robotsSitemap(),
+    purgecss(),
+    critters({
+      critters: {
+        publicPath: R_BASE_URL,
+      },
+    }),
+    // compress(),
   ],
   build: {
     assets: "public",

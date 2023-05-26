@@ -23,23 +23,25 @@ const Tag = tag;
 ---
 
 <Tag class:list={["card"]} {...rest}>
-  <img src={imageUrl} alt={`Project ${projectName} Preview`} width="230" height="140" />
+  <img src={imageUrl} alt={`Project ${projectName} Preview`} width="230" height="140" class:list={[classNames]} />
   <div class="content">
     <h3>{projectName}</h3>
     <span class="description">{description}</span>
     <a class="link" href={githubLink} aria-label="View Code" target="_blank" rel="nofollow noopener noreferrer">
-      <Icon width="1.5em" height="1.5em" name="mdi:github" aria-label={`Github logo`} /><span>View Code</span></a
-    >
+      <Icon width="1.5em" height="1.5em" name="mdi:github" aria-label="Github logo" />
+      <span>View Code</span>
+    </a>
   </div>
 </Tag>
 
 <style lang="scss">
   @use "styles.scss" as *;
   .card {
+    flex-direction: column;
+    display: flex;
     border-radius: 12px;
     overflow: hidden;
     background-color: color(light);
-    // box-shadow: color(secondary) 0 0 5px 2px, color(dark) 4px 7px 8px 0px;
     box-shadow: 0 0 3px 0 color(accent), 4px 7px 8px 0 color(secondary);
 
     @include skipIfNoMotionPrefered() {
@@ -50,6 +52,13 @@ const Tag = tag;
     &:focus {
       transform: scale(1.02);
     }
+
+    @include mobile {
+      display: grid;
+      grid-template-columns: 0.3fr 0.7fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "image content";
+    }
   }
 
   img {
@@ -57,6 +66,16 @@ const Tag = tag;
     width: 100%;
     height: auto;
     object-fit: cover;
+    background-color: color(secondary, 0.8);
+
+    @include tablet {
+      grid-area: image;
+    }
+
+    @include mobile {
+      object-fit: fill;
+      height: 100%;
+    }
   }
 
   h3 {
@@ -67,17 +86,25 @@ const Tag = tag;
   .content {
     padding: 8px 16px 16px;
     cursor: default;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    @include mobile {
+      grid-area: content;
+    }
   }
 
   .description {
     color: text-color(secondary);
+    flex: 1;
   }
 
   .link {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-end;
-    margin-top: 12px;
+    margin-top: 1.5em;
     color: text-color(secondary);
     @include font(caption, s);
 

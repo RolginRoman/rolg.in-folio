@@ -1,50 +1,68 @@
 ---
-import ProjectCard from "../ProjectCard.astro";
+import { links } from "src/const";
+import ProjectCard from "../blocks/ProjectCard.astro";
 const { class: classNames, ...rest } = Astro.props;
 const projects = [
   {
-    projectName: "blabla",
-    imageUrl:
-      "https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    description: "There is one of the most stupid project",
-    githubLink: "https://github.com/RolginRoman",
+    projectName: "rtech / plugins",
+    imageUrl: "/logo/logo.svg",
+    description: "Astro plugins with Nx monorepo support",
+    githubLink: "https://github.com/RolginRoman/rtech",
   },
   {
-    projectName: "blabla",
-    imageUrl:
-      "https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    description: "There is one of the most stupid project",
-    githubLink: "https://github.com/RolginRoman",
+    projectName: "wavepulse",
+    imageUrl: "https://raw.githubusercontent.com/RolginRoman/wavepulse/main/static/logo.svg",
+    description: "Chat app with the power of Qwik & Centrifuge",
+    githubLink: "https://github.com/RolginRoman/wavepulse",
+    classNames: "main-proj",
   },
   {
-    projectName: "blabla",
-    imageUrl:
-      "https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    description: "There is one of the most stupid project",
-    githubLink: "https://github.com/RolginRoman",
+    projectName: "rolg.in-folio",
+    imageUrl: "/website-random.jpg",
+    description: "This website 👽",
+    githubLink: "https://github.com/RolginRoman/rolg.in-folio",
   },
 ];
 ---
 
 <section class="projects" {...rest}>
-  <h2>Projects</h2><h3>Things I've worked on in the recent past</h3>
+  <h2>Projects</h2><h3>Things I&rsquo;ve worked on&nbsp;in&nbsp;the recent past</h3>
   <article>
+    <p>Experienced software engineer with 8+&nbsp;years in&nbsp;web development.</p>
     <p>
-      Software engineer with more than 8 years of experience in web development. Proficient in frontend frameworks like
-      Angular, Typescript, and system architecture.
+      Proficient in&nbsp;Angular, TypeScript, system architecture. My&nbsp;true passion lies in&nbsp;creating
+      user-centric designs, optimizing&nbsp;UX, and driving business metrics through a&nbsp;combination
+      of&nbsp;development expertise and effective people management.
     </p>
     <p>
-      Moreover, I led teams with guidance to projects' completion. Passionate about user-centric design, UX and business
-      metrics optimisations via development and people management.
+      Exploring the realm of&nbsp;open-source software, eagerly anticipating personal growth and development
+      in&nbsp;this domain.
     </p>
   </article>
   <ul class="projects-list">
     {
-      projects.map(({ projectName, description, githubLink, imageUrl }) => (
-        <ProjectCard tabindex="0" tag="li" {projectName} {description} {imageUrl} {githubLink} />
+      projects.map(({ projectName, description, githubLink, imageUrl, classNames }) => (
+        <ProjectCard
+          tabindex="0"
+          tag="li"
+          {projectName}
+          {description}
+          {imageUrl}
+          {githubLink}
+          class={classNames ? classNames : ""}
+        />
       ))
     }
   </ul>
+  <p class="spoiler">
+    There are&nbsp;NDAs and stuff.<br /> However, my&nbsp;<a
+      class="cv"
+      href={links.cv}
+      title="CV Link"
+      aria-label="CV Link">CV &rarr;</a
+    >
+    contains all the relevant details regarding my experience and accomplishments.
+  </p>
 </section>
 <style lang="scss">
   @use "styles.scss" as utils;
@@ -75,6 +93,17 @@ const projects = [
     text-align: justify;
   }
 
+  .spoiler {
+    @include utils.font(caption, m);
+    color: utils.text-color(secondary);
+    margin: 1em 0 0;
+    text-align: justify;
+  }
+
+  .main-proj {
+    background-color: utils.color(main);
+  }
+
   .projects-list {
     list-style: none;
     padding: 0;
@@ -85,6 +114,18 @@ const projects = [
     @include utils.tablet {
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 16px;
+    }
+
+    @include utils.mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .cv {
+    text-decoration: underline;
+
+    &:hover {
+      color: utils.text-color(secondary-hover);
     }
   }
 </style>
