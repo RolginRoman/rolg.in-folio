@@ -6,6 +6,8 @@ import Contacts from "@/sections/Contacts.astro";
 import Projects from "@/sections/Projects.astro";
 import Tech from "@/sections/Tech.astro";
 import { SEO } from "astro-seo";
+
+const mainPage = import.meta.env.SITE; // TODO correct env local/prod
 ---
 
 <Layout>
@@ -17,7 +19,7 @@ import { SEO } from "astro-seo";
       basic: {
         title: "I'm Rolgin Roman 🚀",
         type: "website",
-        image: "https://user-images.githubusercontent.com/5182256/131216951-8f74f425-f775-463d-a11b-0e01ad9fce8d.png",
+        image: `${mainPage}/og-image.png`,
       },
     }}
     twitter={{
@@ -25,13 +27,12 @@ import { SEO } from "astro-seo";
     }}
     extend={{
       // extending the default link tags
-      link: [{ rel: "icon", href: "/favicon.svg" }],
+      link: [{ rel: "icon", href: `${mainPage}/favicon.svg` }],
       // extending the default meta tags
       meta: [
         {
           name: "twitter:image",
-          content:
-            "https://user-images.githubusercontent.com/5182256/131216951-8f74f425-f775-463d-a11b-0e01ad9fce8d.png",
+          content: `${mainPage}/og-image.png`,
         },
         { name: "twitter:title", content: "I'm Rolgin Roman 🚀" },
         { name: "twitter:description", content: "Dev" },
