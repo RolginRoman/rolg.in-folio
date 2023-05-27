@@ -24,19 +24,13 @@ const baseUrl = import.meta.env.BASE_URL;
     }}
     twitter={{
       creator: "@rolginroman",
+      title: "I'm Rolgin Roman 🚀",
+      description: "Software engineer 👨🏻‍💻 Web adept",
+      image: `${baseUrl}og-image.png`,
+      imageAlt: "Rolgin Roman website",
     }}
     extend={{
-      // extending the default link tags
       link: [{ rel: "icon", href: `${baseUrl}favicon.svg` }],
-      // extending the default meta tags
-      meta: [
-        {
-          name: "twitter:image",
-          content: `${baseUrl}og-image.png`,
-        },
-        { name: "twitter:title", content: "I'm Rolgin Roman 🚀" },
-        { name: "twitter:description", content: "Dev" },
-      ],
     }}
   />
   <main>

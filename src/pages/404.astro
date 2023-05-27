@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Icon from "astro-icon";
 import { SEO } from "astro-seo";
 
-const baseUrl = import.meta.env.BASE_URL; // TODO correct env local/prod
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout disableInteractions={true}>
@@ -13,26 +13,20 @@ const baseUrl = import.meta.env.BASE_URL; // TODO correct env local/prod
     description="There was a typo maybe? Not found page"
     openGraph={{
       basic: {
-        title: "Oops, this's an unpleasant place",
+        title: "'m Rolgin Roman 🚀",
         type: "website",
         image: `${baseUrl}og-image.png`,
       },
     }}
     twitter={{
       creator: "@rolginroman",
+      title: "I'm Rolgin Roman 🚀",
+      description: "Software engineer 👨🏻‍💻 Web adept",
+      image: `${baseUrl}og-image.png`,
+      imageAlt: "Rolgin Roman website",
     }}
     extend={{
-      // extending the default link tags
       link: [{ rel: "icon", href: `${baseUrl}favicon.svg` }],
-      // extending the default meta tags
-      meta: [
-        {
-          name: "twitter:image",
-          content: `${baseUrl}og-image.png`,
-        },
-        { name: "twitter:title", content: "Oops, this's an unpleasant place" },
-        { name: "twitter:description", content: "There was a typo maybe? Not found page" },
-      ],
     }}
   />
   <section>

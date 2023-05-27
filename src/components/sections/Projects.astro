@@ -59,6 +59,8 @@ const projects = [
       class="cv"
       href={links.cv}
       title="CV Link"
+      target="_blank"
+      rel="noreferrer noopener"
       aria-label="CV Link">CV &rarr;</a
     >
     contains all the relevant details regarding my experience and accomplishments.
@@ -117,7 +119,8 @@ const projects = [
     }
 
     @include utils.mobile {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
     }
   }
 
