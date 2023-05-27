@@ -1,8 +1,13 @@
 export const links = {
-  twitter: "https://twitter.com/rolginroman",
-  linkedin: "https://www.linkedin.com/in/rolgin-roman/",
-  github: "https://github.com/rolginroman",
-  telegram: "https://t.me/itisngguru",
+  twitter: "https://l.rolg.in/twitter",
+  linkedin: "https://l.rolg.in/linkedin",
+  github: "https://l.rolg.in/github",
+  telegram: "https://l.rolg.in/telegram",
   mail: "romanrolgin.fe@gmail.com",
-  cv: "https://drive.google.com/file/d/1vlCYT8bLncB5FLQ2YzjT0Zo3X1CrrVi2/view?usp=sharing",
-};
+  cv: "https://l.rolg.in/cv",
+  projects: {
+    rtech: "https://l.rolg.in/plugins",
+    wavepulse: "https://l.rolg.in/wavepulse",
+    rolginfolio: "https://l.rolg.in/portfolio-website",
+  }
+}
