@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Icon from "astro-icon";
 import { SEO } from "astro-seo";
 
-const mainPage = import.meta.env.SITE; // TODO correct env local/prod
+const baseUrl = import.meta.env.BASE_URL; // TODO correct env local/prod
 ---
 
 <Layout disableInteractions={true}>
@@ -15,7 +15,7 @@ const mainPage = import.meta.env.SITE; // TODO correct env local/prod
       basic: {
         title: "Oops, this's an unpleasant place",
         type: "website",
-        image: `${mainPage}/og-image.png`,
+        image: `${baseUrl}og-image.png`,
       },
     }}
     twitter={{
@@ -23,12 +23,12 @@ const mainPage = import.meta.env.SITE; // TODO correct env local/prod
     }}
     extend={{
       // extending the default link tags
-      link: [{ rel: "icon", href: `${mainPage}/favicon.svg` }],
+      link: [{ rel: "icon", href: `${baseUrl}favicon.svg` }],
       // extending the default meta tags
       meta: [
         {
           name: "twitter:image",
-          content: `${mainPage}/og-image.png`,
+          content: `${baseUrl}og-image.png`,
         },
         { name: "twitter:title", content: "Oops, this's an unpleasant place" },
         { name: "twitter:description", content: "There was a typo maybe? Not found page" },
@@ -39,7 +39,7 @@ const mainPage = import.meta.env.SITE; // TODO correct env local/prod
     <h1>404</h1>
     <h2>Whoops, we've been lost for some time</h2>
     <span>but</span>
-    <a href={mainPage} aria-label="Go to home page"
+    <a href={baseUrl} aria-label="Go to home page"
       >This is the way<Icon class:list={["mando"]} name="mando" width="2em" height="2em" aria-hidden="true" /></a
     >
   </section>

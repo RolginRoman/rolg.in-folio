@@ -28,7 +28,6 @@ export default defineConfig({
         publicPath: R_BASE_URL,
       },
     }),
-    // compress(),
   ],
   build: {
     assets: "public",

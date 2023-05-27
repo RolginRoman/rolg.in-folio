@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { align = "end", class: classNames, disableMobile = false, ...rest } = Astro.props;
-const baseUrl = import.meta.env.SITE;
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <nav class:list={[{ "-end": align === "end" }, classNames]} {...rest} aria-labelledby="mobile-menu">
