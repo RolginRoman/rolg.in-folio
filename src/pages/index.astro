@@ -7,7 +7,7 @@ import Projects from "@/sections/Projects.astro";
 import Tech from "@/sections/Tech.astro";
 import { SEO } from "astro-seo";
 
-const mainPage = import.meta.env.SITE; // TODO correct env local/prod
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout>
@@ -19,7 +19,7 @@ const mainPage = import.meta.env.SITE; // TODO correct env local/prod
       basic: {
         title: "I'm Rolgin Roman 🚀",
         type: "website",
-        image: `${mainPage}/og-image.png`,
+        image: `${baseUrl}og-image.png`,
       },
     }}
     twitter={{
@@ -27,12 +27,12 @@ const mainPage = import.meta.env.SITE; // TODO correct env local/prod
     }}
     extend={{
       // extending the default link tags
-      link: [{ rel: "icon", href: `${mainPage}/favicon.svg` }],
+      link: [{ rel: "icon", href: `${baseUrl}favicon.svg` }],
       // extending the default meta tags
       meta: [
         {
           name: "twitter:image",
-          content: `${mainPage}/og-image.png`,
+          content: `${baseUrl}og-image.png`,
         },
         { name: "twitter:title", content: "I'm Rolgin Roman 🚀" },
         { name: "twitter:description", content: "Dev" },
