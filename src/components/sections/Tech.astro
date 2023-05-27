@@ -114,7 +114,7 @@ const tech = [
           </li>
         ) : (
           <li>
-            <div class="group">
+            <div class="group" tabindex="0">
               {item.group.map((groupItem) => (
                 <div class="group-icon" data-name={groupItem.name}>
                   <Icon
@@ -242,7 +242,9 @@ const tech = [
     }
 
     @media (hover: none) {
-      &:focus-within {
+      &:focus-within,
+      &:focus,
+      &:active {
         @include activeGroupOnInteraction();
       }
     }
