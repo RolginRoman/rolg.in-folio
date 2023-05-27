@@ -5,4 +5,9 @@ export const links = {
   telegram: "https://l.rolg.in/telegram",
   mail: "romanrolgin.fe@gmail.com",
   cv: "https://l.rolg.in/cv",
-};
+  projects: {
+    rtech: "https://l.rolg.in/plugins",
+    wavepulse: "https://l.rolg.in/wavepulse",
+    rolginfolio: "https://l.rolg.in/portfolio-website",
+  }
+}
