@@ -1,4 +1,9 @@
 ---
+interface Props {
+  injectSelector?: string;
+  postprocess?: (css: string) => string;
+}
+
 const scaleSteps = {
   "minor-second": 1.067,
   "major-second": 1.125,
@@ -213,7 +218,7 @@ function buildFluidDesignSystem(opts: FluidDesignSystemConfig): FluidDesignSyste
 
 const fluidDesignSystem: FluidDesignSystemCSSInput = buildFluidDesignSystem(config);
 
-const { injectSelector = "html" } = Astro.props;
+const { injectSelector = "html", postprocess = (css: string) => css } = Astro.props;
 ---
 
-<style set:html={generateCSS(fluidDesignSystem, injectSelector)}></style>
+<style set:html={postprocess(generateCSS(fluidDesignSystem, injectSelector))}></style>

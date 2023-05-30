@@ -10,23 +10,26 @@ export interface Props {
 }
 
 const { disableInteractions = false } = Astro.props;
+const ignoreCritters = (css: string) => {
+  return `
+    /* critters:include start */
+    ${css}
+    /* critters:include end */`;
+};
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <FluidDesignSystem />
+    <FluidDesignSystem postprocess={ignoreCritters} />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <ThemeInjector />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <slot name="seo-header" />
   </head>
 
-  <body>
+  <body data-critters-container>
     <Header disableInteractions={disableInteractions} />
     <slot />
     <Footer />
@@ -35,7 +38,7 @@ const { disableInteractions = false } = Astro.props;
 
       :root {
         @include applyPalette();
-        // @include applyFontFace();
+        @include applyFontFace();
       }
 
       html {

@@ -22,16 +22,20 @@ export default defineConfig({
       changefreq: "monthly",
     }),
     robotsSitemap(),
-    purgecss(),
     critters({
       critters: {
+        pruneSource: true,
         publicPath: R_BASE_URL,
       },
+    }),
+    purgecss({
+      variables: false,
     }),
   ],
   build: {
     assets: "public",
   },
+  compressHTML: true,
   vite: {
     envDir: "environment",
     server: {
