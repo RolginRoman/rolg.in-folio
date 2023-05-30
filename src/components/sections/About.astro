@@ -17,13 +17,20 @@ const cvLink = links.cv;
   </section>
   <section class="photo">
     <div class="border">
-      <img
-        class="profile-photo"
-        alt="Roman Rolgin photo"
-        width={baseImageDimension - 14}
-        height={baseImageDimension - 14}
-        src="avatar-photo-sq.jpg"
-      />
+      <picture class="profile-photo-pic">
+        <source
+          srcset="https://res.cloudinary.com/dmxeucrmr/image/upload/c_fill,h_256,w_256/f_webp/avatar-photo-sq_ah39yq.jpg 1x, https://res.cloudinary.com/dmxeucrmr/image/upload/c_fill,h_512,w_512/f_webp/avatar-photo-sq_ah39yq.jpg 2x"
+          type="image/webp"
+        />
+        <img
+          class="profile-photo"
+          alt="Roman Rolgin photo"
+          width={baseImageDimension - 14}
+          height={baseImageDimension - 14}
+          src="https://res.cloudinary.com/dmxeucrmr/image/upload/c_fill,h_256,w_256/avatar-photo-sq_ah39yq.jpg"
+          srcset="https://res.cloudinary.com/dmxeucrmr/image/upload/c_fill,h_256,w_256/avatar-photo-sq_ah39yq.jpg 1x, https://res.cloudinary.com/dmxeucrmr/image/upload/c_fill,h_512,w_512/avatar-photo-sq_ah39yq.jpg 2x"
+        />
+      </picture>
     </div>
   </section>
   <a
@@ -117,6 +124,14 @@ const cvLink = links.cv;
     min-width: clamp(180px, 60vw, 256px);
     height: clamp(180px, 60vw, 256px);
     border-radius: 50%;
+  }
+
+  .profile-photo-pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 
   .profile-photo {
