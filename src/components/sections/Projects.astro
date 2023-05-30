@@ -1,26 +1,34 @@
 ---
+import { Icon } from "astro-icon";
 import { links } from "src/const";
 import ProjectCard from "../blocks/ProjectCard.astro";
+
 const { class: classNames, ...rest } = Astro.props;
 const projects = [
   {
     projectName: "rtech / plugins",
-    imageUrl: "logo/logo.svg",
+    svg: "logo",
     description: "Astro plugins with Nx monorepo support",
     githubLink: links.projects.rtech,
+    classNames: "-plug",
+    optimize: true,
   },
   {
     projectName: "wavepulse",
     imageUrl: "https://raw.githubusercontent.com/RolginRoman/wavepulse/main/static/logo.svg",
+    svg: "wavepulse:logo",
     description: "Chat app with the power of Qwik & Centrifuge",
     githubLink: links.projects.wavepulse,
-    classNames: "main-proj",
+    classNames: "-wave",
+    optimize: true,
   },
   {
     projectName: "rolg.in-folio",
-    imageUrl: "website-random.jpg",
+    svg: "logo-glitch",
     description: "This website 👽",
+    classNames: "-folio",
     githubLink: links.projects.rolginfolio,
+    optimize: false,
   },
 ];
 ---
@@ -41,16 +49,36 @@ const projects = [
   </article>
   <ul class="projects-list">
     {
-      projects.map(({ projectName, description, githubLink, imageUrl, classNames }) => (
+      projects.map(({ projectName, description, githubLink, imageUrl, classNames, svg, optimize }) => (
         <ProjectCard
           tabindex="0"
           tag="li"
           {projectName}
           {description}
-          {imageUrl}
           {githubLink}
           class={classNames ? classNames : ""}
-        />
+        >
+          {svg ? (
+            <Icon
+              slot="card-image"
+              optimize={optimize}
+              name={svg}
+              alt={`Project ${projectName} Preview`}
+              width="230"
+              height="140"
+              class:list={["image", classNames]}
+            />
+          ) : (
+            <img
+              slot="card-image"
+              src={imageUrl}
+              alt={`Project ${projectName} Preview`}
+              width="230"
+              height="140"
+              class:list={["image", classNames]}
+            />
+          )}
+        </ProjectCard>
       ))
     }
   </ul>
@@ -76,6 +104,7 @@ const projects = [
     justify-content: center;
     padding: 3rem 0 0;
   }
+
   h2 {
     margin: 1rem 0 0;
     @include utils.font(heading, m);
@@ -102,10 +131,6 @@ const projects = [
     text-align: justify;
   }
 
-  .main-proj {
-    background-color: utils.color(main);
-  }
-
   .projects-list {
     list-style: none;
     padding: 0;
@@ -121,6 +146,37 @@ const projects = [
     @include utils.mobile {
       display: flex;
       flex-direction: column;
+    }
+  }
+
+  .image {
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    background-color: utils.color(secondary, 0.8);
+
+    @include utils.tablet {
+      grid-area: image;
+    }
+
+    @include utils.mobile {
+      object-fit: fill;
+      height: 100%;
+    }
+
+    &.-plug {
+      color: utils.color(dark);
+    }
+
+    &.-wave {
+    }
+
+    &.-folio {
+      --glitch-protocol-text-color: #{utils.text-color(secondary)};
+      --glitch-text-color: #{utils.color(dark)};
+      --glitch-text-primary-color: #{utils.color(ext-accent-secondary)};
+      --glitch-text-secondary-color: #{utils.color(ext-accent-inverted)};
     }
   }
 

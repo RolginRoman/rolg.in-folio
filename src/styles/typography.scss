@@ -45,30 +45,14 @@ $_typeScales: (
 );
 
 @mixin font($scope, $size) {
-  // $font: map.get($_fonts, $scope, $size);
-  // TODO apply as css vars. init font scope's vars at :root
-  // font-size: list.nth($font, 1);
-  // font-weight: list.nth($font, 2);
-  // line-height: list.nth($font, 3);
-  // letter-spacing: list.nth($font, 4);
-
   $font: map.get($_typeScales, $scope, $size);
   $fluidClampName: "--step-#{list.nth($font, 1)}";
   font-size: var(#{$fluidClampName});
   font-weight: list.nth($font, 2);
   line-height: 1.3em;
   letter-spacing: 0;
-
-  // todo media query
-  //   @media (max-width: 768px) {
-  //     font-size: list.nth($font, 5);
-  //     font-weight: list.nth($font, 6);
-  //     line-height: list.nth($font, 7);
-  //     letter-spacing: list.nth($font, 8);
-  //   }
 }
 
-// temporarily skipped. Using google fonts
 @mixin applyFontFace() {
   $allWeights: ();
   @each $scope, $scopedFonts in $_fonts {
@@ -91,7 +75,7 @@ $_typeScales: (
   @each $weight, $links in $allWeights {
     @include fontSourceInter.fontFaceCustom(
       $weight: $weight,
-      $display: fallback,
+      $display: swap,
       $woff2Path: list.nth($links, 1),
       $woffPath: list.nth($links, 2),
       // only latin unicode symbols
