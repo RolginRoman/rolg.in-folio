@@ -5,11 +5,12 @@
 // const dt = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
 //     lt = localStorage ? localStorage.getItem("theme") : void 0,
 //     t = lt || dt;
-//   localStorage && localStorage.setItem("theme", t),
 //     "light" === t ? document.documentElement.classList.remove("dark") : document.documentElement.classList.add("dark");
 ---
 
-<script
-  is:inline
-  src="data:text/javascript;base64,ICBjb25zdCBkdCA9IHdpbmRvdy5tYXRjaE1lZGlhKCIocHJlZmVycy1jb2xvci1zY2hlbWU6IGRhcmspIikubWF0Y2hlcyA/ICJkYXJrIiA6ICJsaWdodCIsCiAgICBsdCA9IGxvY2FsU3RvcmFnZSA/IGxvY2FsU3RvcmFnZS5nZXRJdGVtKCJ0aGVtZSIpIDogdm9pZCAwLAogICAgdCA9IGx0IHx8IGR0OwogIGxvY2FsU3RvcmFnZSAmJiBsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgidGhlbWUiLCB0KSwKICAgICJsaWdodCIgPT09IHQgPyBkb2N1bWVudC5kb2N1bWVudEVsZW1lbnQuY2xhc3NMaXN0LnJlbW92ZSgiZGFyayIpIDogZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50LmNsYXNzTGlzdC5hZGQoImRhcmsiKTs="
-></script>
+<script is:inline>
+  const dt = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
+    lt = localStorage ? localStorage.getItem("theme") : void 0,
+    t = lt || dt;
+  "light" === t ? document.documentElement.classList.remove("dark") : document.documentElement.classList.add("dark");
+</script>
