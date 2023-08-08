@@ -753,6 +753,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@otterlord/astro-critters@npm:^1.1.41":
+  version: 1.1.41
+  resolution: "@otterlord/astro-critters@npm:1.1.41"
+  dependencies:
+    critters: 0.0.19
+  checksum: bff0c28ad62cbbd95b35cdbb8ca5becd7de655013396cb69899d8d1d048fa9bd9fee861d6cb53adcd47a19c6145faa48f15e3680b81622b7b0e669cce0781929
+  languageName: node
+  linkType: hard
+
 "@pkgr/utils@npm:^2.3.1":
   version: 2.4.1
   resolution: "@pkgr/utils@npm:2.4.1"
@@ -1787,7 +1796,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0, chalk@npm:^4.1.2":
+"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -2036,6 +2045,21 @@ __metadata:
     postcss: ^8.4.23
     pretty-bytes: ^6.1.0
   checksum: 022432a0618869f76d9ca3e31ce27c71e0a3df68f5ae21a9205389c50dbb312f10298eaacbca1eae9ff5012f79f650d57ebc9b9f61f6ace6c8c4cb62be698ad0
+  languageName: node
+  linkType: hard
+
+"critters@npm:0.0.19":
+  version: 0.0.19
+  resolution: "critters@npm:0.0.19"
+  dependencies:
+    chalk: ^4.1.0
+    css-select: ^5.1.0
+    dom-serializer: ^2.0.0
+    domhandler: ^5.0.2
+    htmlparser2: ^8.0.2
+    postcss: ^8.4.23
+    pretty-bytes: ^5.3.0
+  checksum: 662aabb3ddd665c85b418ddf0ab2b179485997ad9288ec8e127d37c8a359c93166ccd35587586c374aa69bf34b985c8da92345ea0a63a72848e7abcfa1df71be
   languageName: node
   linkType: hard
 
@@ -6035,6 +6059,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pretty-bytes@npm:^5.3.0":
+  version: 5.6.0
+  resolution: "pretty-bytes@npm:5.6.0"
+  checksum: 9c082500d1e93434b5b291bd651662936b8bd6204ec9fa17d563116a192d6d86b98f6d328526b4e8d783c07d5499e2614a807520249692da9ec81564b2f439cd
+  languageName: node
+  linkType: hard
+
 "pretty-bytes@npm:^6.1.0":
   version: 6.1.0
   resolution: "pretty-bytes@npm:6.1.0"
@@ -6436,6 +6467,7 @@ __metadata:
   dependencies:
     "@astrojs/sitemap": ^1.3.1
     "@fontsource/inter": ^4.5.15
+    "@otterlord/astro-critters": ^1.1.41
     "@rtech-public/astro-fluid-design": latest
     "@typescript-eslint/eslint-plugin": ^5.59.5
     "@typescript-eslint/parser": ^5.59.2
