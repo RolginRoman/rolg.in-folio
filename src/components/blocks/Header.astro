@@ -7,13 +7,15 @@ import ThemeToggle from "../global/ThemeToggle.astro";
 interface Props {
   disableInteractions?: boolean;
 }
-
+const baseUrl = import.meta.env.BASE_URL;
 const { disableInteractions = false } = Astro.props;
 ---
 
 <header data-interactive={!disableInteractions}>
   <section>
-    <Logo width={52} />
+    <a href={baseUrl} aria-label="Home page">
+      <Logo width={52} />
+    </a>
     <Menu class="menu">
       <>
         <Networks class="m-networks" />

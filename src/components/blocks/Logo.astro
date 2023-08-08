@@ -9,7 +9,7 @@ width ??= 96;
 const widthVar = `${width}px`;
 ---
 
-<div>
+<div class="root">
   <Icon
     class="logo"
     name="logo"
@@ -20,7 +20,7 @@ const widthVar = `${width}px`;
   />
 </div>
 <style define:vars={{ iconWidth: widthVar }}>
-  div {
+  .root {
     display: flex;
     width: var(--iconWidth);
     min-width: var(--iconWidth);
