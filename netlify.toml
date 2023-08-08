@@ -1,0 +1,10 @@
+# caching
+[[headers]]
+  for = "/public/*.woff2"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000"
+[[headers]]
+  for = "/public/*.woff"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000"
+# caching end    
