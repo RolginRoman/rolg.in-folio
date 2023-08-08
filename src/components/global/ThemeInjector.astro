@@ -2,20 +2,14 @@
 // it is a scipt reference that is inlined as base64 to ThemeInjector.astro
 // TODO need to automate this inlining process somehow (vite plugins or something else)
 
-// const darkMedia = window.matchMedia("(prefers-color-scheme: dark)");
-// const lsTheme = localStorage?.getItem("theme");
-// const theme = lsTheme
-//   ? ["dark", "light"].includes(lsTheme)
-//     ? lsTheme
-//     : "light"
-//   : darkMedia.matches
-//   ? "dark"
-//   : "light";
-// localStorage ? localStorage.setItem("theme", theme) : undefined;
-// theme === "light" ? document.documentElement.classList.remove("dark") : document.documentElement.classList.add("dark");
+// const dt = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
+//     lt = localStorage ? localStorage.getItem("theme") : void 0,
+//     t = lt || dt;
+//   localStorage && localStorage.setItem("theme", t),
+//     "light" === t ? document.documentElement.classList.remove("dark") : document.documentElement.classList.add("dark");
 ---
 
 <script
   is:inline
-  src="data:text/javascript;base64,Y29uc3QgZGFya01lZGlhID0gd2luZG93Lm1hdGNoTWVkaWEoIihwcmVmZXJzLWNvbG9yLXNjaGVtZTogZGFyaykiKTsKY29uc3QgbHNUaGVtZSA9IGxvY2FsU3RvcmFnZT8uZ2V0SXRlbSgidGhlbWUiKTsKY29uc3QgdGhlbWUgPSBsc1RoZW1lCiAgPyBbImRhcmsiLCAibGlnaHQiXS5pbmNsdWRlcyhsc1RoZW1lKQogICAgPyBsc1RoZW1lCiAgICA6ICJsaWdodCIKICA6IGRhcmtNZWRpYS5tYXRjaGVzCiAgPyAiZGFyayIKICA6ICJsaWdodCI7CmxvY2FsU3RvcmFnZSA/IGxvY2FsU3RvcmFnZS5zZXRJdGVtKCJ0aGVtZSIsIHRoZW1lKSA6IHVuZGVmaW5lZDsKdGhlbWUgPT09ICJsaWdodCIgPyBkb2N1bWVudC5kb2N1bWVudEVsZW1lbnQuY2xhc3NMaXN0LnJlbW92ZSgiZGFyayIpIDogZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50LmNsYXNzTGlzdC5hZGQoImRhcmsiKTs="
+  src="data:text/javascript;base64,ICBjb25zdCBkdCA9IHdpbmRvdy5tYXRjaE1lZGlhKCIocHJlZmVycy1jb2xvci1zY2hlbWU6IGRhcmspIikubWF0Y2hlcyA/ICJkYXJrIiA6ICJsaWdodCIsCiAgICBsdCA9IGxvY2FsU3RvcmFnZSA/IGxvY2FsU3RvcmFnZS5nZXRJdGVtKCJ0aGVtZSIpIDogdm9pZCAwLAogICAgdCA9IGx0IHx8IGR0OwogIGxvY2FsU3RvcmFnZSAmJiBsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgidGhlbWUiLCB0KSwKICAgICJsaWdodCIgPT09IHQgPyBkb2N1bWVudC5kb2N1bWVudEVsZW1lbnQuY2xhc3NMaXN0LnJlbW92ZSgiZGFyayIpIDogZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50LmNsYXNzTGlzdC5hZGQoImRhcmsiKTs="
 ></script>

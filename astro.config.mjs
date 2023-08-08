@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 import { resolve } from "path";
 import purgecss from "astro-purgecss";
-import critters from "astro-critters";
+import critters from "@otterlord/astro-critters";
 import basicSsl from "@vitejs/plugin-basic-ssl";
 import sitemap from "@astrojs/sitemap";
 import { esbuildInliner } from "./tools/vite-plugins/esbuild-inliner.mjs";
