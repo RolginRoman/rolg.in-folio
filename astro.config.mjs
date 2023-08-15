@@ -5,7 +5,6 @@ import purgecss from "astro-purgecss";
 import critters from "@otterlord/astro-critters";
 import basicSsl from "@vitejs/plugin-basic-ssl";
 import sitemap from "@astrojs/sitemap";
-import { esbuildInliner } from "./tools/vite-plugins/esbuild-inliner.mjs";
 import { robotsSitemap } from "./tools/vite-plugins/robots-sitemap.mjs";
 
 const env = loadEnv(process.env.MODE, resolve(process.cwd(), "environment"), "");
@@ -41,7 +40,7 @@ export default defineConfig({
     server: {
       https: !!SSL,
     },
-    plugins: [SSL ? basicSsl() : undefined, esbuildInliner()],
+    plugins: [SSL ? basicSsl() : undefined],
     css: {
       preprocessorOptions: {
         scss: {
