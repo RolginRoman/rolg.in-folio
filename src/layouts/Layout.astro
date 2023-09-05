@@ -23,7 +23,7 @@ const { disableInteractions = false } = Astro.props;
     <slot name="seo-header" />
   </head>
 
-  <body data-critters-container>
+  <body class="dark" data-critters-container>
     <Header disableInteractions={disableInteractions} />
     <slot />
     <Footer />
@@ -31,7 +31,9 @@ const { disableInteractions = false } = Astro.props;
       @use "styles.scss" as *;
 
       :root {
+        /* critters:include start */
         @include applyPalette();
+        /* critters:include end */
         @include applyFontFace();
       }
 
