@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "yarn runtscheck && astro build",
+    "build": "rm -rf dist && yarn runtscheck && astro build",
     "preview": "astro preview --open",
     "runeslint": "eslint .",
     "runtscheck": "tsc --noEmit & echo \"tsc run was successful\"",
