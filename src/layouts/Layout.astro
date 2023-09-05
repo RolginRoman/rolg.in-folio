@@ -13,7 +13,7 @@ const { disableInteractions = false } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark" data-critters-container>
   <head>
     <ThemeInjector />
     <FluidDesignSystem />
@@ -23,7 +23,7 @@ const { disableInteractions = false } = Astro.props;
     <slot name="seo-header" />
   </head>
 
-  <body class="dark" data-critters-container>
+  <body>
     <Header disableInteractions={disableInteractions} />
     <slot />
     <Footer />
